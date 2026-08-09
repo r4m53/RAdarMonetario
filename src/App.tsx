@@ -14,6 +14,7 @@ import type { Evaluation, EvaluationMode, EvaluationSourceMode, Person } from ".
 import { exportPdf } from "./pdf";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import DecisionsRadar from "./decisions";
+import ForecastsRadar from "./forecasts";
 
 const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 
@@ -54,6 +55,7 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/experiencia" element={<ExperienceRadar />} />
       <Route path="/decisiones" element={<DecisionsRadar />} />
+      <Route path="/pronosticos" element={<ForecastsRadar />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <PlatformFooter />
@@ -75,6 +77,7 @@ function SplashScreen() {
 const modules = [
   { title: "Radar de experiencia · Junta BM", status: "Disponible", description: "Explorador histórico de experiencia profesional de los integrantes de la Junta de Gobierno.", path: "/experiencia", available: true },
   { title: "Radar de decisiones · Junta BM", status: "Disponible", description: "Seguimiento histórico de decisiones, votaciones y disensos de la Junta de Gobierno.", path: "/decisiones", available: true },
+  { title: "Pronósticos de Banxico", status: "Disponible", description: "Trayectorias, revisiones y sesgos de pronóstico", path: "/pronosticos", available: true },
 ];
 
 function Home() {

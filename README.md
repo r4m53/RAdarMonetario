@@ -1,5 +1,13 @@
 # Radar BM · RAdarMonetario
 
+## Actualizar Pronósticos de Banxico
+
+El archivo maestro se conserva en `data/master/pronosticos_banxico_historico.xlsm`. Para regenerar el JSON web y el reporte de validación ejecute `npm run publish:forecasts`.
+
+El proceso conserva vacíos como `null`, valida claves duplicadas y fechas ambiguas, diferencia decisiones efectivas/programadas/estimadas y genera `public/data/pronosticos-banxico.json` y `data/forecast-validation-report.json`. La correspondencia con Radar de Decisiones se valida por fecha exacta; una decisión sin correspondencia no recibe enlace.
+
+Convenciones centrales: sesgo = pronóstico − observado; D0 es la última decisión efectiva anterior al cierre del trimestre; las cohortes son 2–4%, >4–5% y >5% y se configuran en el JSON generado.
+
 Aplicación pública para comparar el perfil técnico e institucional de la Junta de Gobierno del Banco de México.
 
 ## Fuente de verdad

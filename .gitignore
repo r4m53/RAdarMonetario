@@ -7,3 +7,5 @@ dist/
 _legacy_*/
 __pycache__/
 *.py[cod]
+tests/chrome-pdf-*/
+tests/forecast-pdfs/

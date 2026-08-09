@@ -2,7 +2,7 @@
 import { AppBar, Box, Button, Chip, Container, Divider, FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Paper, Radio, RadioGroup, Select, Stack, Tab, Tabs, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, TextField, Toolbar, Typography } from "@mui/material";
 import { ArrowBack, ArrowForward, Home as HomeIcon } from "@mui/icons-material";
 import { Bar, BarChart, CartesianGrid, Cell, ComposedChart, LabelList, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { loadDecisionsData, validVote, voteSymbol, type Decision, type DecisionsData, type GraphPoint, type Person, type Vote } from "./decisions-data";
 
 const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
@@ -52,7 +52,9 @@ function DecisionChart({ data, activeId, onSelect, member = false }: { data: Gra
 
 function DecisionsTab({ data }: { data: DecisionsData }) {
   const decisions = data.decisions;
-  const [index, setIndex] = useState(decisions.length - 2);
+  const [params] = useSearchParams();
+  const linkedIndex = decisions.findIndex(item=>item.Decision_ID===params.get("decision"));
+  const [index, setIndex] = useState(linkedIndex>=0?linkedIndex:decisions.length - 2);
   const decision = decisions[index];
   const selectId = (id: string) => { const next=decisions.findIndex(item=>item.Decision_ID===id); if(next>=0)setIndex(next); };
   const windowStart = Math.max(0, Math.min(index - 5, decisions.length - 11));
