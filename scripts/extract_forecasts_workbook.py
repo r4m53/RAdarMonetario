@@ -50,7 +50,7 @@ cat_config = [
  {"code":"INPC","label":"INPC","color":"#f28c28"}, {"code":"SUB","label":"Subyacente","color":"#4da3ff"},
  {"code":"INPC_DES","label":"INPC desestacionalizado","color":"#33c37d"}, {"code":"SUB_DES","label":"Subyacente desestacionalizado","color":"#c084fc"},
 ]
-payload={"metadata":{"generatedAt":datetime.now().astimezone().isoformat(),"source":SOURCE.name,"biasDefinition":"Pronóstico − Observado","lastObservedPeriod":"2026-T2"},"config":{"categories":cat_config,"horizons":[-16,-8,-2,-1,0],"cohorts":[{"id":"2-4","label":"Entre 2% y 4%","min":2,"max":4,"color":"#33c37d"},{"id":"4-5","label":"Mayor a 4% y hasta 5%","min":4,"max":5,"color":"#f2c94c"},{"id":"gt5","label":"Mayor a 5%","min":5,"max":None,"color":"#ef6b6b"}]},"decisions":decision_out,"forecasts":forecast_out,"observed":observed,"decisionCrosswalk":crosswalk}
+payload={"metadata":{"generatedAt":datetime.now().astimezone().isoformat(),"source":SOURCE.name,"biasDefinition":"Pronóstico − Observado","lastObservedPeriod":"2026-T2"},"config":{"categories":cat_config,"horizons":list(range(-16,1)),"cohorts":[{"id":"2-4","label":"Entre 2% y 4%","min":2,"max":4,"color":"#33c37d"},{"id":"4-5","label":"Mayor a 4% y hasta 5%","min":4,"max":5,"color":"#f2c94c"},{"id":"gt5","label":"Mayor a 5%","min":5,"max":None,"color":"#ef6b6b"}]},"decisions":decision_out,"forecasts":forecast_out,"observed":observed,"decisionCrosswalk":crosswalk}
 
 duplicate_forecasts=[k for k,n in Counter((x["decisionId"],x["period"],x["category"]) for x in forecast_out).items() if n>1]
 ambiguous_dates=[k for k,n in Counter(x["date"] for x in decision_out).items() if n>1]
@@ -60,3 +60,4 @@ OUT.write_text(json.dumps(payload,ensure_ascii=False,separators=(",",":")),encod
 REPORT.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(report,ensure_ascii=False,indent=2))
 if duplicate_forecasts or ambiguous_dates: raise SystemExit(2)
+
