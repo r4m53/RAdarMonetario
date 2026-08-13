@@ -1,0 +1,3008 @@
+{
+  "file": "banxico_expectativas_monitor_opiniones.xlsm",
+  "size": 2985355,
+  "sheets": [
+    {
+      "name": "README",
+      "state": "visible",
+      "range": "A1:H17",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "BANXICO | Monitor Histórico de Opiniones"
+        },
+        {
+          "cell": "B1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "C1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "D1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "E1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "F1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "G1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "H1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "A3",
+          "value": "Propósito"
+        },
+        {
+          "cell": "B3",
+          "value": "Archivo autónomo para analizar percepción del entorno económico, factores que obstaculizan el crecimiento y condiciones de competencia en México."
+        },
+        {
+          "cell": "A5",
+          "value": "Indicadores incluidos"
+        },
+        {
+          "cell": "A6",
+          "value": "Fuente"
+        },
+        {
+          "cell": "B6",
+          "value": "Encuesta sobre las Expectativas de los Especialistas en Economía del Sector Privado, Banco de México."
+        },
+        {
+          "cell": "A7",
+          "value": "Cobertura"
+        },
+        {
+          "cell": "B7",
+          "value": "Información histórica disponible hasta julio de 2026."
+        },
+        {
+          "cell": "A8",
+          "value": "DATA_RAW"
+        },
+        {
+          "cell": "B8",
+          "value": "Base normalizada exclusiva de indicadores de opinión; tabla tblDataRaw."
+        },
+        {
+          "cell": "A9",
+          "value": "Percepción"
+        },
+        {
+          "cell": "B9",
+          "value": "PERCEPTION_DATA, PERCEPTION_CHART, PERCEPTION_SUMMARY y PERCEPTION_HEATMAP."
+        },
+        {
+          "cell": "A10",
+          "value": "Factores"
+        },
+        {
+          "cell": "B10",
+          "value": "FACTORS_SUMMARY y FACTORS_HEATMAP."
+        },
+        {
+          "cell": "A11",
+          "value": "Competencia"
+        },
+        {
+          "cell": "B11",
+          "value": "COMPETITION_SUMMARY y COMPETITION_HEATMAP."
+        },
+        {
+          "cell": "A12",
+          "value": "Tendencias"
+        },
+        {
+          "cell": "B12",
+          "value": "OPINION_TRENDS permite comparar indicadores seleccionados; (Ninguno) oculta series mediante NA()."
+        },
+        {
+          "cell": "A13",
+          "value": "Actualización"
+        },
+        {
+          "cell": "B13",
+          "value": "Agregar nuevas observaciones a tblDataRaw conservando los nombres de columnas, indicator_id y formatos de fecha."
+        },
+        {
+          "cell": "A14",
+          "value": "Selectores"
+        },
+        {
+          "cell": "B14",
+          "value": "Las celdas amarillas con texto azul controlan preguntas, bloques, fechas personalizadas e indicadores."
+        },
+        {
+          "cell": "A15",
+          "value": "Autonomía"
+        },
+        {
+          "cell": "B15",
+          "value": "Las hojas de análisis utilizan únicamente la tabla interna tblDataRaw; no requieren hojas de inflación, PIB o fondeo."
+        },
+        {
+          "cell": "A16",
+          "value": "Validación"
+        },
+        {
+          "cell": "A17",
+          "value": "Fecha de depuración"
+        },
+        {
+          "cell": "B17",
+          "value": "46246"
+        }
+      ]
+    },
+    {
+      "name": "DATA_RAW",
+      "state": "visible",
+      "range": "A1:AN22322",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "B1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "C1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "D1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "E1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "F1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "G1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "H1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "I1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "J1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "K1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "L1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "M1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "N1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "O1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "P1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Q1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "R1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "S1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "T1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "U1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "V1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "W1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "X1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Y1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Z1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AA1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AB1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AC1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AD1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AE1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AF1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AG1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AH1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AI1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AJ1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AK1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AL1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AM1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AN1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        }
+      ]
+    },
+    {
+      "name": "SERIES_MAP",
+      "state": "visible",
+      "range": "A1:J6",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "B1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "C1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "D1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "E1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "F1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "G1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "H1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "I1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "J1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "A3",
+          "value": "variable"
+        },
+        {
+          "cell": "B3",
+          "value": "descripción Banxico"
+        },
+        {
+          "cell": "C3",
+          "value": "series ID"
+        },
+        {
+          "cell": "D3",
+          "value": "table ID"
+        },
+        {
+          "cell": "E3",
+          "value": "unidad"
+        },
+        {
+          "cell": "F3",
+          "value": "frecuencia"
+        },
+        {
+          "cell": "G3",
+          "value": "fecha inicial"
+        },
+        {
+          "cell": "H3",
+          "value": "fecha final"
+        },
+        {
+          "cell": "I3",
+          "value": "URL fuente"
+        },
+        {
+          "cell": "J3",
+          "value": "observaciones metodológicas"
+        },
+        {
+          "cell": "A4",
+          "value": "Percepción del entorno económico"
+        },
+        {
+          "cell": "B4",
+          "value": "Respuestas agregadas de opinión"
+        },
+        {
+          "cell": "C4",
+          "value": "Resolver en metadata API"
+        },
+        {
+          "cell": "D4",
+          "value": "CR180"
+        },
+        {
+          "cell": "E4",
+          "value": "Porcentaje / conteo"
+        },
+        {
+          "cell": "F4",
+          "value": "Mensual"
+        },
+        {
+          "cell": "G4",
+          "value": "1999-01"
+        },
+        {
+          "cell": "H4",
+          "value": "2026-07"
+        },
+        {
+          "cell": "I4",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR180&locale=es"
+        },
+        {
+          "cell": "J4",
+          "value": "Separado de pronósticos; target_period identifica la opción de respuesta."
+        },
+        {
+          "cell": "A5",
+          "value": "Factores que obstaculizan el crecimiento"
+        },
+        {
+          "cell": "B5",
+          "value": "Distribución y nivel de preocupación"
+        },
+        {
+          "cell": "C5",
+          "value": "Resolver en metadata API"
+        },
+        {
+          "cell": "D5",
+          "value": "CR182"
+        },
+        {
+          "cell": "E5",
+          "value": "Porcentaje / escala"
+        },
+        {
+          "cell": "F5",
+          "value": "Mensual"
+        },
+        {
+          "cell": "G5",
+          "value": "1999-01"
+        },
+        {
+          "cell": "H5",
+          "value": "2026-07"
+        },
+        {
+          "cell": "I5",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR182&locale=es"
+        },
+        {
+          "cell": "J5",
+          "value": "Separado de pronósticos; forecast_type identifica la familia de respuesta."
+        }
+      ]
+    },
+    {
+      "name": "SURVEY_MAP",
+      "state": "visible",
+      "range": "A1:E334",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "B1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "C1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "D1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "E1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "A3",
+          "value": "survey_id"
+        },
+        {
+          "cell": "B3",
+          "value": "survey_date"
+        },
+        {
+          "cell": "C3",
+          "value": "survey_year"
+        },
+        {
+          "cell": "D3",
+          "value": "survey_month"
+        },
+        {
+          "cell": "E3",
+          "value": "convención"
+        },
+        {
+          "cell": "A4",
+          "value": "SURV_199901"
+        },
+        {
+          "cell": "B4",
+          "value": "1999-01-31"
+        },
+        {
+          "cell": "C4",
+          "value": "1999"
+        },
+        {
+          "cell": "D4",
+          "value": "1"
+        },
+        {
+          "cell": "E4",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A5",
+          "value": "SURV_199902"
+        },
+        {
+          "cell": "B5",
+          "value": "1999-02-28"
+        },
+        {
+          "cell": "C5",
+          "value": "1999"
+        },
+        {
+          "cell": "D5",
+          "value": "2"
+        },
+        {
+          "cell": "E5",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A6",
+          "value": "SURV_199903"
+        },
+        {
+          "cell": "B6",
+          "value": "1999-03-31"
+        },
+        {
+          "cell": "C6",
+          "value": "1999"
+        },
+        {
+          "cell": "D6",
+          "value": "3"
+        },
+        {
+          "cell": "E6",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A7",
+          "value": "SURV_199904"
+        },
+        {
+          "cell": "B7",
+          "value": "1999-04-30"
+        },
+        {
+          "cell": "C7",
+          "value": "1999"
+        },
+        {
+          "cell": "D7",
+          "value": "4"
+        },
+        {
+          "cell": "E7",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A8",
+          "value": "SURV_199905"
+        },
+        {
+          "cell": "B8",
+          "value": "1999-05-31"
+        },
+        {
+          "cell": "C8",
+          "value": "1999"
+        },
+        {
+          "cell": "D8",
+          "value": "5"
+        },
+        {
+          "cell": "E8",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A9",
+          "value": "SURV_199906"
+        },
+        {
+          "cell": "B9",
+          "value": "1999-06-30"
+        },
+        {
+          "cell": "C9",
+          "value": "1999"
+        },
+        {
+          "cell": "D9",
+          "value": "6"
+        },
+        {
+          "cell": "E9",
+          "value": "Último día del mes de referencia"
+        }
+      ]
+    },
+    {
+      "name": "INDICATOR_MAP",
+      "state": "visible",
+      "range": "A1:E6",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "B1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "C1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "D1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "E1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "A3",
+          "value": "indicator_id"
+        },
+        {
+          "cell": "B3",
+          "value": "variable"
+        },
+        {
+          "cell": "C3",
+          "value": "variable_group"
+        },
+        {
+          "cell": "D3",
+          "value": "tablas SIE"
+        },
+        {
+          "cell": "E3",
+          "value": "unidad"
+        },
+        {
+          "cell": "A4",
+          "value": "OP_ENV"
+        },
+        {
+          "cell": "B4",
+          "value": "Percepción del entorno económico"
+        },
+        {
+          "cell": "C4",
+          "value": "OPINION"
+        },
+        {
+          "cell": "D4",
+          "value": "CR180"
+        },
+        {
+          "cell": "E4",
+          "value": "Porcentaje / conteo"
+        },
+        {
+          "cell": "A5",
+          "value": "OP_FACTORS"
+        },
+        {
+          "cell": "B5",
+          "value": "Factores que obstaculizan el crecimiento"
+        },
+        {
+          "cell": "C5",
+          "value": "OPINION"
+        },
+        {
+          "cell": "D5",
+          "value": "CR182"
+        },
+        {
+          "cell": "E5",
+          "value": "Porcentaje / escala"
+        },
+        {
+          "cell": "A6",
+          "value": "OP_COMP"
+        },
+        {
+          "cell": "B6",
+          "value": "Condiciones de competencia en México"
+        },
+        {
+          "cell": "C6",
+          "value": "OPINION"
+        },
+        {
+          "cell": "D6",
+          "value": "CR357"
+        },
+        {
+          "cell": "E6",
+          "value": "Porcentaje / escala"
+        }
+      ]
+    },
+    {
+      "name": "FIELD_MAP",
+      "state": "visible",
+      "range": "A1:D10",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "B1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "C1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "D1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "A3",
+          "value": "field"
+        },
+        {
+          "cell": "B3",
+          "value": "descripción"
+        },
+        {
+          "cell": "C3",
+          "value": "formato / ejemplos"
+        },
+        {
+          "cell": "D3",
+          "value": "uso"
+        },
+        {
+          "cell": "A4",
+          "value": "survey_date"
+        },
+        {
+          "cell": "B4",
+          "value": "Fecha del levantamiento"
+        },
+        {
+          "cell": "C4",
+          "value": "Fecha Excel / yyyy-mm-dd"
+        },
+        {
+          "cell": "D4",
+          "value": "Eje temporal de todos los análisis"
+        },
+        {
+          "cell": "A5",
+          "value": "indicator_id"
+        },
+        {
+          "cell": "B5",
+          "value": "ID del módulo de opinión"
+        },
+        {
+          "cell": "C5",
+          "value": "OP_ENV / OP_FACTORS / OP_COMP"
+        },
+        {
+          "cell": "D5",
+          "value": "Identifica percepción, factores o competencia"
+        },
+        {
+          "cell": "A6",
+          "value": "forecast_type"
+        },
+        {
+          "cell": "B6",
+          "value": "Pregunta o bloque de respuestas"
+        },
+        {
+          "cell": "C6",
+          "value": "Texto categórico"
+        },
+        {
+          "cell": "D6",
+          "value": "Selector de pregunta o bloque"
+        },
+        {
+          "cell": "A7",
+          "value": "target_period"
+        },
+        {
+          "cell": "B7",
+          "value": "Opción de respuesta o indicador"
+        },
+        {
+          "cell": "C7",
+          "value": "Texto categórico"
+        },
+        {
+          "cell": "D7",
+          "value": "Filas de heatmaps y series históricas"
+        },
+        {
+          "cell": "A8",
+          "value": "mean"
+        },
+        {
+          "cell": "B8",
+          "value": "Porcentaje o nivel agregado"
+        },
+        {
+          "cell": "C8",
+          "value": "Número"
+        },
+        {
+          "cell": "D8",
+          "value": "Valor analizado y graficado"
+        },
+        {
+          "cell": "A9",
+          "value": "n_responses"
+        },
+        {
+          "cell": "B9",
+          "value": "Número de respuestas cuando está disponible"
+        },
+        {
+          "cell": "C9",
+          "value": "Entero / vacío"
+        },
+        {
+          "cell": "D9",
+          "value": "Control de cobertura de encuesta"
+        },
+        {
+          "cell": "A10",
+          "value": "source_table_id"
+        },
+        {
+          "cell": "B10",
+          "value": "Cuadro SIE de origen"
+        },
+        {
+          "cell": "C10",
+          "value": "CR180 / CR182 / CR357"
+        },
+        {
+          "cell": "D10",
+          "value": "Trazabilidad a Banco de México"
+        }
+      ]
+    },
+    {
+      "name": "OPINION_TRENDS",
+      "state": "visible",
+      "range": "A1:AC470",
+      "formulaCount": 10,
+      "formulaSamples": [
+        {
+          "cell": "P3",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_FACTORS\",_xlpm.q,\"Distribución porcentual de respuestas\",_xlpm.sel,IF($B$6:$B$11=\"(Ninguno)\",\"\",$B$6:$B$11),_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&_xlpm.t,_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.d),ROWS(_xlpm.sel),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,IF(INDEX(_xlpm.sel,_xlpm.c)=\"\",NA(),_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.r),\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&INDEX(_xlpm.sel,_xlpm.c),_xlpm.keys,tblDataRaw[mean],NA())))),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha\",TRANSPOSE(IF(_xlpm.sel=\"\",\"(Ninguno)\",_xlpm.sel))),_xlfn.HSTACK(_xlpm.d,_xlpm.vals)))"
+        },
+        {
+          "cell": "AA3",
+          "formula": "_xlfn.VSTACK(\"(Ninguno)\",_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[target_period],(tblDataRaw[indicator_id]=\"OP_FACTORS\")*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period]))))))"
+        },
+        {
+          "cell": "AB3",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],tblDataRaw[indicator_id]=\"OP_COMP\")))"
+        },
+        {
+          "cell": "AC3",
+          "formula": "_xlfn.VSTACK(\"(Ninguno)\",_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[target_period],(tblDataRaw[indicator_id]=\"OP_COMP\")*(tblDataRaw[forecast_type]=$B$40)*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period]))))))"
+        },
+        {
+          "cell": "B6",
+          "formula": "IFERROR(INDEX(_xlfn.ANCHORARRAY($AA$3),2),\"(Ninguno)\")"
+        },
+        {
+          "cell": "B7",
+          "formula": "IFERROR(INDEX(_xlfn.ANCHORARRAY($AA$3),3),\"(Ninguno)\")"
+        },
+        {
+          "cell": "B8",
+          "formula": "IFERROR(INDEX(_xlfn.ANCHORARRAY($AA$3),4),\"(Ninguno)\")"
+        },
+        {
+          "cell": "B43",
+          "formula": "IFERROR(INDEX(_xlfn.ANCHORARRAY($AC$3),2),\"(Ninguno)\")"
+        },
+        {
+          "cell": "B45",
+          "formula": "IFERROR(INDEX(_xlfn.ANCHORARRAY($AC$3),4),\"(Ninguno)\")"
+        },
+        {
+          "cell": "P350",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_COMP\",_xlpm.q,$B$40,_xlpm.sel,IF($B$43:$B$48=\"(Ninguno)\",\"\",$B$43:$B$48),_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.d),ROWS(_xlpm.sel),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,IF(INDEX(_xlpm.sel,_xlpm.c)=\"\",NA(),_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.r),\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&INDEX(_xlpm.sel,_xlpm.c),_xlpm.keys,tblDataRaw[mean],NA())))),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha\",TRANSPOSE(IF(_xlpm.sel=\"\",\"(Ninguno)\",_xlpm.sel))),_xlfn.HSTACK(_xlpm.d,_xlpm.vals)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Indicadores de opinión — Evolución histórica"
+        },
+        {
+          "cell": "AA2",
+          "value": "Indicadores de factores"
+        },
+        {
+          "cell": "AB2",
+          "value": "Bloques de competencia"
+        },
+        {
+          "cell": "AC2",
+          "value": "Indicadores de competencia"
+        },
+        {
+          "cell": "A3",
+          "value": "FACTORES QUE OBSTACULIZAN EL CRECIMIENTO"
+        },
+        {
+          "cell": "P3",
+          "value": "Fecha"
+        },
+        {
+          "cell": "Q3",
+          "value": "Aumento en los costos salariales"
+        },
+        {
+          "cell": "R3",
+          "value": "Aumento en precios de insumos y materias primas"
+        },
+        {
+          "cell": "S3",
+          "value": "Contracción de la oferta de recursos del exterior"
+        },
+        {
+          "cell": "T3",
+          "value": "(Ninguno)"
+        },
+        {
+          "cell": "U3",
+          "value": "(Ninguno)"
+        },
+        {
+          "cell": "V3",
+          "value": "(Ninguno)"
+        },
+        {
+          "cell": "AA3",
+          "value": "(Ninguno)"
+        },
+        {
+          "cell": "AB3",
+          "value": "Competencia como obstáculo al crecimiento"
+        },
+        {
+          "cell": "AC3",
+          "value": "(Ninguno)"
+        },
+        {
+          "cell": "P4",
+          "value": "36191"
+        },
+        {
+          "cell": "Q4",
+          "value": "#N/A"
+        },
+        {
+          "cell": "R4",
+          "value": "0"
+        },
+        {
+          "cell": "S4",
+          "value": "11.5"
+        },
+        {
+          "cell": "T4",
+          "value": "#N/A"
+        },
+        {
+          "cell": "U4",
+          "value": "#N/A"
+        },
+        {
+          "cell": "V4",
+          "value": "#N/A"
+        },
+        {
+          "cell": "AA4",
+          "value": "Aumento en los costos salariales"
+        },
+        {
+          "cell": "AB4",
+          "value": "Intensidad de competencia"
+        },
+        {
+          "cell": "AC4",
+          "value": "Acceso financiamiento"
+        },
+        {
+          "cell": "A5",
+          "value": "Serie"
+        },
+        {
+          "cell": "B5",
+          "value": "Indicador seleccionado"
+        },
+        {
+          "cell": "P5",
+          "value": "36219"
+        },
+        {
+          "cell": "Q5",
+          "value": "#N/A"
+        },
+        {
+          "cell": "R5",
+          "value": "0"
+        },
+        {
+          "cell": "S5",
+          "value": "17.3"
+        },
+        {
+          "cell": "T5",
+          "value": "#N/A"
+        },
+        {
+          "cell": "U5",
+          "value": "#N/A"
+        },
+        {
+          "cell": "V5",
+          "value": "#N/A"
+        },
+        {
+          "cell": "AA5",
+          "value": "Aumento en precios de insumos y materias primas"
+        },
+        {
+          "cell": "AB5",
+          "value": "Obstáculos para hacer negocios"
+        },
+        {
+          "cell": "AC5",
+          "value": "Bajo nivel educativo de los trabajadores"
+        },
+        {
+          "cell": "A6",
+          "value": "1"
+        },
+        {
+          "cell": "B6",
+          "value": "Aumento en los costos salariales"
+        },
+        {
+          "cell": "P6",
+          "value": "36250"
+        }
+      ]
+    },
+    {
+      "name": "FACTORS_HEATMAP",
+      "state": "visible",
+      "range": "A1:MW40",
+      "formulaCount": 1,
+      "formulaSamples": [
+        {
+          "cell": "A3",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_FACTORS\",_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&_xlpm.t,_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.cats),ROWS(_xlpm.d),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.c),\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&INDEX(_xlpm.cats,_xlpm.r),_xlpm.keys,tblDataRaw[mean],\"\"))),_xlfn.VSTACK(_xlfn.HSTACK(\"Indicador\",TRANSPOSE(_xlpm.d)),_xlfn.HSTACK(_xlpm.cats,_xlpm.vals)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Factores que obstaculizan el crecimiento — Heatmap histórico"
+        },
+        {
+          "cell": "A3",
+          "value": "Indicador"
+        },
+        {
+          "cell": "B3",
+          "value": "36191"
+        },
+        {
+          "cell": "C3",
+          "value": "36219"
+        },
+        {
+          "cell": "D3",
+          "value": "36250"
+        },
+        {
+          "cell": "E3",
+          "value": "36280"
+        },
+        {
+          "cell": "F3",
+          "value": "36311"
+        },
+        {
+          "cell": "G3",
+          "value": "36341"
+        },
+        {
+          "cell": "H3",
+          "value": "36372"
+        },
+        {
+          "cell": "I3",
+          "value": "36403"
+        },
+        {
+          "cell": "J3",
+          "value": "36433"
+        },
+        {
+          "cell": "K3",
+          "value": "36464"
+        },
+        {
+          "cell": "L3",
+          "value": "36494"
+        },
+        {
+          "cell": "M3",
+          "value": "36525"
+        },
+        {
+          "cell": "N3",
+          "value": "36556"
+        },
+        {
+          "cell": "O3",
+          "value": "36585"
+        },
+        {
+          "cell": "P3",
+          "value": "36616"
+        },
+        {
+          "cell": "Q3",
+          "value": "36646"
+        },
+        {
+          "cell": "R3",
+          "value": "36677"
+        },
+        {
+          "cell": "S3",
+          "value": "36707"
+        },
+        {
+          "cell": "T3",
+          "value": "36738"
+        },
+        {
+          "cell": "U3",
+          "value": "36769"
+        },
+        {
+          "cell": "V3",
+          "value": "36799"
+        },
+        {
+          "cell": "W3",
+          "value": "36830"
+        },
+        {
+          "cell": "X3",
+          "value": "36860"
+        },
+        {
+          "cell": "Y3",
+          "value": "36891"
+        },
+        {
+          "cell": "Z3",
+          "value": "36922"
+        },
+        {
+          "cell": "AA3",
+          "value": "36950"
+        },
+        {
+          "cell": "AB3",
+          "value": "36981"
+        },
+        {
+          "cell": "AC3",
+          "value": "37011"
+        },
+        {
+          "cell": "AD3",
+          "value": "37042"
+        },
+        {
+          "cell": "AE3",
+          "value": "37072"
+        },
+        {
+          "cell": "AF3",
+          "value": "37103"
+        },
+        {
+          "cell": "AG3",
+          "value": "37134"
+        },
+        {
+          "cell": "AH3",
+          "value": "37164"
+        },
+        {
+          "cell": "AI3",
+          "value": "37195"
+        },
+        {
+          "cell": "AJ3",
+          "value": "37225"
+        },
+        {
+          "cell": "AK3",
+          "value": "37256"
+        },
+        {
+          "cell": "AL3",
+          "value": "37287"
+        },
+        {
+          "cell": "AM3",
+          "value": "37315"
+        }
+      ]
+    },
+    {
+      "name": "FACTORS_SUMMARY",
+      "state": "visible",
+      "range": "A1:O333",
+      "formulaCount": 5,
+      "formulaSamples": [
+        {
+          "cell": "B3",
+          "formula": "MAX(_xlfn.ANCHORARRAY($O$3))"
+        },
+        {
+          "cell": "O3",
+          "formula": "_xlfn.LET(_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,(tblDataRaw[indicator_id]=\"OP_FACTORS\")*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period]))))))"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_FACTORS\",_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-12),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "F8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_FACTORS\",_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-36),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "K8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_FACTORS\",_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,$B$4,_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Factores que obstaculizan el crecimiento — Resumen de cambios"
+        },
+        {
+          "cell": "O2",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A3",
+          "value": "Última fecha"
+        },
+        {
+          "cell": "B3",
+          "value": "46234"
+        },
+        {
+          "cell": "O3",
+          "value": "36191"
+        },
+        {
+          "cell": "A4",
+          "value": "Fecha personalizada"
+        },
+        {
+          "cell": "B4",
+          "value": "45504"
+        },
+        {
+          "cell": "O4",
+          "value": "36219"
+        },
+        {
+          "cell": "O5",
+          "value": "36250"
+        },
+        {
+          "cell": "O6",
+          "value": "36280"
+        },
+        {
+          "cell": "A7",
+          "value": "Cambio 12 meses"
+        },
+        {
+          "cell": "B7",
+          "value": "Actual"
+        },
+        {
+          "cell": "C7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "D7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "F7",
+          "value": "Cambio 36 meses"
+        },
+        {
+          "cell": "G7",
+          "value": "Actual"
+        },
+        {
+          "cell": "H7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "I7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "K7",
+          "value": "Cambio fecha personalizada"
+        },
+        {
+          "cell": "L7",
+          "value": "Actual"
+        },
+        {
+          "cell": "M7",
+          "value": "Personalizada"
+        },
+        {
+          "cell": "N7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "O7",
+          "value": "36311"
+        },
+        {
+          "cell": "A8",
+          "value": "Problemas de inseguridad pública"
+        },
+        {
+          "cell": "B8",
+          "value": "20.6"
+        },
+        {
+          "cell": "C8",
+          "value": "17.8"
+        },
+        {
+          "cell": "D8",
+          "value": "2.8000000000000007"
+        },
+        {
+          "cell": "F8",
+          "value": "Factores coyunturales: política sobre comercio exterior (TLCAN, CPTPP, entre otros)"
+        },
+        {
+          "cell": "G8",
+          "value": "15.1"
+        },
+        {
+          "cell": "H8",
+          "value": "0"
+        },
+        {
+          "cell": "I8",
+          "value": "15.1"
+        },
+        {
+          "cell": "K8",
+          "value": "Factores coyunturales: política sobre comercio exterior (TLCAN, CPTPP, entre otros)"
+        },
+        {
+          "cell": "L8",
+          "value": "15.1"
+        },
+        {
+          "cell": "M8",
+          "value": "0.8"
+        },
+        {
+          "cell": "N8",
+          "value": "14.299999999999999"
+        },
+        {
+          "cell": "O8",
+          "value": "36341"
+        },
+        {
+          "cell": "A9",
+          "value": "Otros problemas de falta de estado de derecho 6/"
+        },
+        {
+          "cell": "B9",
+          "value": "8.6999999999999993"
+        },
+        {
+          "cell": "C9",
+          "value": "5.9"
+        },
+        {
+          "cell": "D9",
+          "value": "2.7999999999999989"
+        }
+      ]
+    },
+    {
+      "name": "COMPETITION_HEATMAP",
+      "state": "visible",
+      "range": "A1:ET54",
+      "formulaCount": 2,
+      "formulaSamples": [
+        {
+          "cell": "A6",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_COMP\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.cats),ROWS(_xlpm.d),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.c),\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&INDEX(_xlpm.cats,_xlpm.r),_xlpm.keys,tblDataRaw[mean],\"\"))),_xlfn.VSTACK(_xlfn.HSTACK(\"Indicador\",TRANSPOSE(_xlpm.d)),_xlfn.HSTACK(_xlpm.cats,_xlpm.vals)))"
+        },
+        {
+          "cell": "A51",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],tblDataRaw[indicator_id]=\"OP_COMP\")))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Condiciones de competencia — Heatmap histórico"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta / bloque"
+        },
+        {
+          "cell": "B3",
+          "value": "Obstáculos para hacer negocios"
+        },
+        {
+          "cell": "A6",
+          "value": "Indicador"
+        },
+        {
+          "cell": "B6",
+          "value": "42704"
+        },
+        {
+          "cell": "C6",
+          "value": "42735"
+        },
+        {
+          "cell": "D6",
+          "value": "42766"
+        },
+        {
+          "cell": "E6",
+          "value": "42794"
+        },
+        {
+          "cell": "F6",
+          "value": "42825"
+        },
+        {
+          "cell": "G6",
+          "value": "42855"
+        },
+        {
+          "cell": "H6",
+          "value": "42886"
+        },
+        {
+          "cell": "I6",
+          "value": "42916"
+        },
+        {
+          "cell": "J6",
+          "value": "42947"
+        },
+        {
+          "cell": "K6",
+          "value": "42978"
+        },
+        {
+          "cell": "L6",
+          "value": "43008"
+        },
+        {
+          "cell": "M6",
+          "value": "43039"
+        },
+        {
+          "cell": "N6",
+          "value": "43069"
+        },
+        {
+          "cell": "O6",
+          "value": "43100"
+        },
+        {
+          "cell": "P6",
+          "value": "43131"
+        },
+        {
+          "cell": "Q6",
+          "value": "43159"
+        },
+        {
+          "cell": "R6",
+          "value": "43190"
+        },
+        {
+          "cell": "S6",
+          "value": "43220"
+        },
+        {
+          "cell": "T6",
+          "value": "43251"
+        },
+        {
+          "cell": "U6",
+          "value": "43281"
+        },
+        {
+          "cell": "V6",
+          "value": "43312"
+        },
+        {
+          "cell": "W6",
+          "value": "43343"
+        },
+        {
+          "cell": "X6",
+          "value": "43373"
+        },
+        {
+          "cell": "Y6",
+          "value": "43404"
+        },
+        {
+          "cell": "Z6",
+          "value": "43434"
+        },
+        {
+          "cell": "AA6",
+          "value": "43465"
+        },
+        {
+          "cell": "AB6",
+          "value": "43496"
+        },
+        {
+          "cell": "AC6",
+          "value": "43524"
+        },
+        {
+          "cell": "AD6",
+          "value": "43555"
+        },
+        {
+          "cell": "AE6",
+          "value": "43585"
+        },
+        {
+          "cell": "AF6",
+          "value": "43616"
+        },
+        {
+          "cell": "AG6",
+          "value": "43646"
+        },
+        {
+          "cell": "AH6",
+          "value": "43677"
+        },
+        {
+          "cell": "AI6",
+          "value": "43708"
+        },
+        {
+          "cell": "AJ6",
+          "value": "43738"
+        },
+        {
+          "cell": "AK6",
+          "value": "43769"
+        }
+      ]
+    },
+    {
+      "name": "COMPETITION_SUMMARY",
+      "state": "visible",
+      "range": "A1:O158",
+      "formulaCount": 6,
+      "formulaSamples": [
+        {
+          "cell": "N3",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],tblDataRaw[indicator_id]=\"OP_COMP\")))"
+        },
+        {
+          "cell": "O3",
+          "formula": "_xlfn.LET(_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,(tblDataRaw[indicator_id]=\"OP_COMP\")*(tblDataRaw[forecast_type]=$B$3)*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period]))))))"
+        },
+        {
+          "cell": "B4",
+          "formula": "MAX(_xlfn.ANCHORARRAY($O$3))"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_COMP\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-12),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "F8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_COMP\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-36),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "K8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_COMP\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,$B$5,_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Condiciones de competencia — Resumen de cambios"
+        },
+        {
+          "cell": "N2",
+          "value": "Bloques disponibles"
+        },
+        {
+          "cell": "O2",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta / bloque"
+        },
+        {
+          "cell": "B3",
+          "value": "Obstáculos para hacer negocios"
+        },
+        {
+          "cell": "N3",
+          "value": "Competencia como obstáculo al crecimiento"
+        },
+        {
+          "cell": "O3",
+          "value": "42704"
+        },
+        {
+          "cell": "A4",
+          "value": "Última fecha"
+        },
+        {
+          "cell": "B4",
+          "value": "46234"
+        },
+        {
+          "cell": "N4",
+          "value": "Intensidad de competencia"
+        },
+        {
+          "cell": "O4",
+          "value": "42735"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha personalizada"
+        },
+        {
+          "cell": "B5",
+          "value": "42947"
+        },
+        {
+          "cell": "N5",
+          "value": "Obstáculos para hacer negocios"
+        },
+        {
+          "cell": "O5",
+          "value": "42766"
+        },
+        {
+          "cell": "N6",
+          "value": "Sectores con problemas de competencia"
+        },
+        {
+          "cell": "O6",
+          "value": "42794"
+        },
+        {
+          "cell": "A7",
+          "value": "Cambio 12 meses"
+        },
+        {
+          "cell": "B7",
+          "value": "Actual"
+        },
+        {
+          "cell": "C7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "D7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "F7",
+          "value": "Cambio 36 meses"
+        },
+        {
+          "cell": "G7",
+          "value": "Actual"
+        },
+        {
+          "cell": "H7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "I7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "K7",
+          "value": "Cambio fecha personalizada"
+        },
+        {
+          "cell": "L7",
+          "value": "Actual"
+        },
+        {
+          "cell": "M7",
+          "value": "Personalizada"
+        },
+        {
+          "cell": "N7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "O7",
+          "value": "42825"
+        },
+        {
+          "cell": "A8",
+          "value": "Corrupción"
+        },
+        {
+          "cell": "B8",
+          "value": "22"
+        },
+        {
+          "cell": "C8",
+          "value": "19"
+        },
+        {
+          "cell": "D8",
+          "value": "3"
+        },
+        {
+          "cell": "F8",
+          "value": "Corrupción"
+        },
+        {
+          "cell": "G8",
+          "value": "22"
+        },
+        {
+          "cell": "H8",
+          "value": "17"
+        },
+        {
+          "cell": "I8",
+          "value": "5"
+        },
+        {
+          "cell": "K8",
+          "value": "Crimen"
+        },
+        {
+          "cell": "L8",
+          "value": "26"
+        }
+      ]
+    },
+    {
+      "name": "PERCEPTION_DATA",
+      "state": "visible",
+      "range": "A1:J400",
+      "formulaCount": 3,
+      "formulaSamples": [
+        {
+          "cell": "J2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],(tblDataRaw[indicator_id]=\"OP_ENV\")*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period])))))"
+        },
+        {
+          "cell": "B3",
+          "formula": "PERCEPTION_CHART!B3"
+        },
+        {
+          "cell": "A5",
+          "formula": "_xlfn.LET(_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.f,(tblDataRaw[indicator_id]=\"OP_ENV\")*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period])),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[target_period],_xlpm.f))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[forecast_type]&\"|\"&tblDataRaw[target_period],_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.d),ROWS(_xlpm.cats),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.r),\"yyyy-mm-dd\")&\"|\"&_xlpm.q&\"|\"&INDEX(_xlpm.cats,_xlpm.c),_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.norm,IFERROR(_xlpm.vals/_xlfn.BYROW(_xlpm.vals,_xlfn.LAMBDA(_xlpm.x,SUM(_xlpm.x)))*100,\"\"),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha\",TRANSPOSE(_xlpm.cats)),_xlfn.HSTACK(_xlpm.d,_xlpm.norm)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Percepción del entorno económico — Datos históricos"
+        },
+        {
+          "cell": "J1",
+          "value": "Preguntas disponibles"
+        },
+        {
+          "cell": "J2",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta seleccionada"
+        },
+        {
+          "cell": "B3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "J3",
+          "value": "Coyuntura para inversiones"
+        },
+        {
+          "cell": "J4",
+          "value": "Economía vs hace un año"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha"
+        },
+        {
+          "cell": "B5",
+          "value": "Empeorará"
+        },
+        {
+          "cell": "C5",
+          "value": "Mejorará"
+        },
+        {
+          "cell": "D5",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "A6",
+          "value": "36191"
+        },
+        {
+          "cell": "B6",
+          "value": "69"
+        },
+        {
+          "cell": "C6",
+          "value": "0"
+        },
+        {
+          "cell": "D6",
+          "value": "31"
+        },
+        {
+          "cell": "A7",
+          "value": "36219"
+        },
+        {
+          "cell": "B7",
+          "value": "37"
+        },
+        {
+          "cell": "C7",
+          "value": "15"
+        },
+        {
+          "cell": "D7",
+          "value": "48"
+        },
+        {
+          "cell": "A8",
+          "value": "36250"
+        },
+        {
+          "cell": "B8",
+          "value": "3"
+        },
+        {
+          "cell": "C8",
+          "value": "60"
+        },
+        {
+          "cell": "D8",
+          "value": "37"
+        },
+        {
+          "cell": "A9",
+          "value": "36280"
+        },
+        {
+          "cell": "B9",
+          "value": "3"
+        },
+        {
+          "cell": "C9",
+          "value": "72"
+        },
+        {
+          "cell": "D9",
+          "value": "25"
+        },
+        {
+          "cell": "A10",
+          "value": "36311"
+        },
+        {
+          "cell": "B10",
+          "value": "4"
+        },
+        {
+          "cell": "C10",
+          "value": "68"
+        },
+        {
+          "cell": "D10",
+          "value": "28.000000000000004"
+        },
+        {
+          "cell": "A11",
+          "value": "36341"
+        },
+        {
+          "cell": "B11",
+          "value": "0"
+        },
+        {
+          "cell": "C11",
+          "value": "53"
+        },
+        {
+          "cell": "D11",
+          "value": "47"
+        },
+        {
+          "cell": "A12",
+          "value": "36372"
+        },
+        {
+          "cell": "B12",
+          "value": "7.0000000000000009"
+        },
+        {
+          "cell": "C12",
+          "value": "50"
+        },
+        {
+          "cell": "D12",
+          "value": "43"
+        },
+        {
+          "cell": "A13",
+          "value": "36403"
+        }
+      ]
+    },
+    {
+      "name": "PERCEPTION_CHART",
+      "state": "visible",
+      "range": "A1:U400",
+      "formulaCount": 2,
+      "formulaSamples": [
+        {
+          "cell": "J2",
+          "formula": "_xlfn.ANCHORARRAY(PERCEPTION_DATA!J2)"
+        },
+        {
+          "cell": "R8",
+          "formula": "_xlfn.ANCHORARRAY(PERCEPTION_DATA!A5)"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Percepción del entorno económico — Evolución histórica"
+        },
+        {
+          "cell": "J1",
+          "value": "Preguntas disponibles"
+        },
+        {
+          "cell": "J2",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta"
+        },
+        {
+          "cell": "B3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "J3",
+          "value": "Coyuntura para inversiones"
+        },
+        {
+          "cell": "J4",
+          "value": "Economía vs hace un año"
+        },
+        {
+          "cell": "R8",
+          "value": "Fecha"
+        },
+        {
+          "cell": "S8",
+          "value": "Empeorará"
+        },
+        {
+          "cell": "T8",
+          "value": "Mejorará"
+        },
+        {
+          "cell": "U8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "R9",
+          "value": "36191"
+        },
+        {
+          "cell": "S9",
+          "value": "69"
+        },
+        {
+          "cell": "T9",
+          "value": "0"
+        },
+        {
+          "cell": "U9",
+          "value": "31"
+        },
+        {
+          "cell": "R10",
+          "value": "36219"
+        },
+        {
+          "cell": "S10",
+          "value": "37"
+        },
+        {
+          "cell": "T10",
+          "value": "15"
+        },
+        {
+          "cell": "U10",
+          "value": "48"
+        },
+        {
+          "cell": "R11",
+          "value": "36250"
+        },
+        {
+          "cell": "S11",
+          "value": "3"
+        },
+        {
+          "cell": "T11",
+          "value": "60"
+        },
+        {
+          "cell": "U11",
+          "value": "37"
+        },
+        {
+          "cell": "R12",
+          "value": "36280"
+        },
+        {
+          "cell": "S12",
+          "value": "3"
+        },
+        {
+          "cell": "T12",
+          "value": "72"
+        },
+        {
+          "cell": "U12",
+          "value": "25"
+        },
+        {
+          "cell": "R13",
+          "value": "36311"
+        },
+        {
+          "cell": "S13",
+          "value": "4"
+        },
+        {
+          "cell": "T13",
+          "value": "68"
+        },
+        {
+          "cell": "U13",
+          "value": "28.000000000000004"
+        },
+        {
+          "cell": "R14",
+          "value": "36341"
+        },
+        {
+          "cell": "S14",
+          "value": "0"
+        },
+        {
+          "cell": "T14",
+          "value": "53"
+        },
+        {
+          "cell": "U14",
+          "value": "47"
+        },
+        {
+          "cell": "R15",
+          "value": "36372"
+        },
+        {
+          "cell": "S15",
+          "value": "7.0000000000000009"
+        },
+        {
+          "cell": "T15",
+          "value": "50"
+        },
+        {
+          "cell": "U15",
+          "value": "43"
+        },
+        {
+          "cell": "R16",
+          "value": "36403"
+        }
+      ]
+    },
+    {
+      "name": "PERCEPTION_HEATMAP",
+      "state": "visible",
+      "range": "A1:MW20",
+      "formulaCount": 2,
+      "formulaSamples": [
+        {
+          "cell": "N3",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],(tblDataRaw[indicator_id]=\"OP_ENV\")*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period])))))"
+        },
+        {
+          "cell": "A6",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_ENV\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.vals,_xlfn.MAKEARRAY(ROWS(_xlpm.cats),ROWS(_xlpm.d),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlfn.XLOOKUP(TEXT(INDEX(_xlpm.d,_xlpm.c),\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&INDEX(_xlpm.cats,_xlpm.r),_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,_xlfn.MAKEARRAY(ROWS(_xlpm.cats),ROWS(_xlpm.d),_xlfn.LAMBDA(_xlpm.r,_xlpm.c,IF(_xlpm.c=1,\"\",IF((INDEX(_xlpm.vals,_xlpm.r,_xlpm.c)<>\"\")*(INDEX(_xlpm.vals,_xlpm.r,_xlpm.c-1)<>\"\"),INDEX(_xlpm.vals,_xlpm.r,_xlpm.c)-INDEX(_xlpm.vals,_xlpm.r,_xlpm.c-1),\"\")))),_xlfn.VSTACK(_xlfn.HSTACK(\"Respuesta\",TRANSPOSE(_xlpm.d)),_xlfn.HSTACK(_xlpm.cats,_xlpm.chg)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Percepción del entorno económico — Cambios vs observación anterior"
+        },
+        {
+          "cell": "N2",
+          "value": "Preguntas disponibles"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta"
+        },
+        {
+          "cell": "B3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "N3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "A4",
+          "value": "Lectura"
+        },
+        {
+          "cell": "B4",
+          "value": "Cambio en puntos porcentuales vs observación anterior"
+        },
+        {
+          "cell": "N4",
+          "value": "Coyuntura para inversiones"
+        },
+        {
+          "cell": "N5",
+          "value": "Economía vs hace un año"
+        },
+        {
+          "cell": "A6",
+          "value": "Respuesta"
+        },
+        {
+          "cell": "B6",
+          "value": "36191"
+        },
+        {
+          "cell": "C6",
+          "value": "36219"
+        },
+        {
+          "cell": "D6",
+          "value": "36250"
+        },
+        {
+          "cell": "E6",
+          "value": "36280"
+        },
+        {
+          "cell": "F6",
+          "value": "36311"
+        },
+        {
+          "cell": "G6",
+          "value": "36341"
+        },
+        {
+          "cell": "H6",
+          "value": "36372"
+        },
+        {
+          "cell": "I6",
+          "value": "36403"
+        },
+        {
+          "cell": "J6",
+          "value": "36433"
+        },
+        {
+          "cell": "K6",
+          "value": "36464"
+        },
+        {
+          "cell": "L6",
+          "value": "36494"
+        },
+        {
+          "cell": "M6",
+          "value": "36525"
+        },
+        {
+          "cell": "N6",
+          "value": "36556"
+        },
+        {
+          "cell": "O6",
+          "value": "36585"
+        },
+        {
+          "cell": "P6",
+          "value": "36616"
+        },
+        {
+          "cell": "Q6",
+          "value": "36646"
+        },
+        {
+          "cell": "R6",
+          "value": "36677"
+        },
+        {
+          "cell": "S6",
+          "value": "36707"
+        },
+        {
+          "cell": "T6",
+          "value": "36738"
+        },
+        {
+          "cell": "U6",
+          "value": "36769"
+        },
+        {
+          "cell": "V6",
+          "value": "36799"
+        },
+        {
+          "cell": "W6",
+          "value": "36830"
+        },
+        {
+          "cell": "X6",
+          "value": "36860"
+        },
+        {
+          "cell": "Y6",
+          "value": "36891"
+        },
+        {
+          "cell": "Z6",
+          "value": "36922"
+        },
+        {
+          "cell": "AA6",
+          "value": "36950"
+        },
+        {
+          "cell": "AB6",
+          "value": "36981"
+        },
+        {
+          "cell": "AC6",
+          "value": "37011"
+        },
+        {
+          "cell": "AD6",
+          "value": "37042"
+        },
+        {
+          "cell": "AE6",
+          "value": "37072"
+        }
+      ]
+    },
+    {
+      "name": "PERCEPTION_SUMMARY",
+      "state": "visible",
+      "range": "A1:O333",
+      "formulaCount": 6,
+      "formulaSamples": [
+        {
+          "cell": "N3",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[forecast_type],(tblDataRaw[indicator_id]=\"OP_ENV\")*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period])))))"
+        },
+        {
+          "cell": "O3",
+          "formula": "_xlfn.LET(_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,(tblDataRaw[indicator_id]=\"OP_ENV\")*(tblDataRaw[forecast_type]=$B$3)*ISERROR(SEARCH(\"Número de\",tblDataRaw[target_period]))))))"
+        },
+        {
+          "cell": "B4",
+          "formula": "MAX(_xlfn.ANCHORARRAY($O$3))"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_ENV\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-12),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "F8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_ENV\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,_xlfn.XLOOKUP(EDATE(_xlpm.latest,-36),_xlpm.d,_xlpm.d,,-1),_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        },
+        {
+          "cell": "K8",
+          "formula": "_xlfn.LET(_xlpm.id,\"OP_ENV\",_xlpm.q,$B$3,_xlpm.raw,tblDataRaw[survey_date],_xlpm.dn,IFERROR(1*_xlpm.raw,DATEVALUE(_xlpm.raw)),_xlpm.t,tblDataRaw[target_period],_xlpm.f,(tblDataRaw[indicator_id]=_xlpm.id)*(tblDataRaw[forecast_type]=_xlpm.q)*ISERROR(SEARCH(\"Número de\",_xlpm.t)),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.dn,_xlpm.f))),_xlpm.latest,MAX(_xlpm.d),_xlpm.cats,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.t,_xlpm.f*(_xlpm.dn=_xlpm.latest)))),_xlpm.keys,IF(ISNUMBER(_xlpm.raw),TEXT(_xlpm.raw,\"yyyy-mm-dd\"),_xlpm.raw)&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[forecast_type]&\"|\"&_xlpm.t,_xlpm.cur,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.latest,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.priorDate,$B$5,_xlpm.prior,_xlfn.MAP(_xlpm.cats,_xlfn.LAMBDA(_xlpm.c,_xlfn.XLOOKUP(TEXT(_xlpm.priorDate,\"yyyy-mm-dd\")&\"|\"&_xlpm.id&\"|\"&_xlpm.q&\"|\"&_xlpm.c,_xlpm.keys,tblDataRaw[mean],\"\"))),_xlpm.chg,IF((_xlpm.cur<>\"\")*(_xlpm.prior<>\"\"),_xlpm.cur-_xlpm.prior,\"\"),_xlfn.SORTBY(_xlfn.HSTACK(_xlpm.cats,_xlpm.cur,_xlpm.prior,_xlpm.chg),_xlpm.chg,-1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "Percepción del entorno económico — Resumen de cambios"
+        },
+        {
+          "cell": "N2",
+          "value": "Preguntas disponibles"
+        },
+        {
+          "cell": "O2",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A3",
+          "value": "Pregunta"
+        },
+        {
+          "cell": "B3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "N3",
+          "value": "Clima de negocios próximos 6 meses"
+        },
+        {
+          "cell": "O3",
+          "value": "36191"
+        },
+        {
+          "cell": "A4",
+          "value": "Última fecha"
+        },
+        {
+          "cell": "B4",
+          "value": "46234"
+        },
+        {
+          "cell": "N4",
+          "value": "Coyuntura para inversiones"
+        },
+        {
+          "cell": "O4",
+          "value": "36219"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha personalizada"
+        },
+        {
+          "cell": "B5",
+          "value": "43100"
+        },
+        {
+          "cell": "N5",
+          "value": "Economía vs hace un año"
+        },
+        {
+          "cell": "O5",
+          "value": "36250"
+        },
+        {
+          "cell": "O6",
+          "value": "36280"
+        },
+        {
+          "cell": "A7",
+          "value": "Cambio 12 meses"
+        },
+        {
+          "cell": "B7",
+          "value": "Actual"
+        },
+        {
+          "cell": "C7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "D7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "F7",
+          "value": "Cambio 36 meses"
+        },
+        {
+          "cell": "G7",
+          "value": "Actual"
+        },
+        {
+          "cell": "H7",
+          "value": "Anterior"
+        },
+        {
+          "cell": "I7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "K7",
+          "value": "Cambio fecha personalizada"
+        },
+        {
+          "cell": "L7",
+          "value": "Actual"
+        },
+        {
+          "cell": "M7",
+          "value": "Personalizada"
+        },
+        {
+          "cell": "N7",
+          "value": "Cambio pp"
+        },
+        {
+          "cell": "O7",
+          "value": "36311"
+        },
+        {
+          "cell": "A8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "B8",
+          "value": "68"
+        },
+        {
+          "cell": "C8",
+          "value": "50"
+        },
+        {
+          "cell": "D8",
+          "value": "18"
+        },
+        {
+          "cell": "F8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "G8",
+          "value": "68"
+        },
+        {
+          "cell": "H8",
+          "value": "44"
+        },
+        {
+          "cell": "I8",
+          "value": "24"
+        },
+        {
+          "cell": "K8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "L8",
+          "value": "68"
+        },
+        {
+          "cell": "M8",
+          "value": "50"
+        }
+      ]
+    }
+  ],
+  "charts": [
+    "xl/charts/chart1.xml",
+    "xl/charts/chart3.xml",
+    "xl/charts/chart2.xml"
+  ],
+  "drawings": [
+    "xl/drawings/drawing1.xml",
+    "xl/drawings/drawing2.xml"
+  ],
+  "tables": [
+    "xl/tables/table1.xml"
+  ],
+  "connections": false,
+  "externalLinks": [],
+  "hasVba": true,
+  "vbaSize": 116736,
+  "definedNames": [
+    {
+      "name": "_xleta.TEXT",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.active",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.activeHdr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.activeVals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.all",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.allRows",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.amax",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.amin",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bh",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.c",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cat",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.categorias",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cats",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.chg",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cur",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.d",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dates",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.datos",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dn",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dt",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.eff",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.esFecha",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.f",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fechas",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fh",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.field",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fMatch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fp",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fper",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsd0",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsv0",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ft",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.g",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.getDates",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.getVals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gOk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gSel",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.hdr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.i",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.id",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ids",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.inc",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.isAnnual",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.k",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.keep",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.keys",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.labels",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.latest",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.m",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.n",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.norm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.oMatch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.p",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.per",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.periodo",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.periods",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.pk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.prior",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.priorDate",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.q",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.r",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.raw",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.s",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sel",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.seq",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sOk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sSel",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.t",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.td",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.tipo",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.tp",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.valid",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.vals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.x",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.yr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.z",
+      "ref": "#NAME?"
+    }
+  ]
+}

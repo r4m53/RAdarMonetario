@@ -1,0 +1,21 @@
+{
+  "forecasts": 8030,
+  "opinions": 21456,
+  "forecastIndicators": [
+    "CETE28",
+    "FONDEO",
+    "GDP_REAL",
+    "INF_GEN",
+    "INF_SUB",
+    "OTHER"
+  ],
+  "opinionIndicators": [
+    "OP_COMP",
+    "OP_ENV",
+    "OP_FACTORS"
+  ],
+  "actualSeries": 349,
+  "forecastsWithActual": 6087,
+  "forecastsWithError": 6087,
+  "nullSurveyDates": 0
+}

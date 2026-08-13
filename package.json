@@ -12,7 +12,9 @@
     "validate:data": "python scripts/validate_timeline.py",
     "publish:decisions": "python scripts/extract_decisions_workbook.py"
     ,"publish:forecasts": "python scripts/extract_forecasts_workbook.py",
-    "validate:forecasts": "python scripts/extract_forecasts_workbook.py"
+    "validate:forecasts": "python scripts/extract_forecasts_workbook.py",
+    "publish:expectations": "python scripts/extract_expectations_workbooks.py",
+    "validate:expectations": "python scripts/extract_expectations_workbooks.py"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

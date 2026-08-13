@@ -16,6 +16,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import DecisionsRadar from "./decisions";
 import ForecastsRadar from "./forecasts";
 import { ShareButton } from "./share-button";
+import ExpectationsRadar from "./expectations";
 
 const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 
@@ -57,6 +58,7 @@ export default function App() {
       <Route path="/experiencia" element={<ExperienceRadar />} />
       <Route path="/decisiones" element={<DecisionsRadar />} />
       <Route path="/pronosticos" element={<ForecastsRadar />} />
+      <Route path="/expectativas" element={<ExpectationsRadar />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <ShareButton />
@@ -80,6 +82,7 @@ const modules = [
   { title: "Radar de experiencia · Junta BM", status: "Disponible", description: "Explorador histórico de experiencia profesional de los integrantes de la Junta de Gobierno.", path: "/experiencia", available: true },
   { title: "Radar de decisiones · Junta BM", status: "Disponible", description: "Seguimiento histórico de decisiones, votaciones y disensos de la Junta de Gobierno.", path: "/decisiones", available: true },
   { title: "Pronósticos de Banxico", status: "Disponible", description: "Trayectorias, revisiones y sesgos de pronóstico", path: "/pronosticos", available: true },
+  { title: "Expectativas de especialistas", status: "Disponible", description: "Pronósticos, dispersión y opiniones de especialistas privados", path: "/expectativas", available: true },
 ];
 
 function Home() {
@@ -95,7 +98,7 @@ function Home() {
       <Button variant={module.available ? "contained" : "outlined"} disabled={!module.available} onClick={() => module.path && navigate(module.path)} sx={{ alignSelf: "flex-start", color: module.available ? "#111" : undefined }}>{module.available ? "Abrir análisis" : "Próximamente"}</Button>
     </Paper>)}</Box>
     <Typography variant="overline" color="primary" sx={{ display: "block", mt: 6 }}>PRÓXIMAMENTE</Typography>
-    <Box className="upcoming-grid">{["Expectativas", "Inflación", "Consenso de analistas", "Calendario Banxico"].map(title => <Paper className="upcoming-card" key={title}><Typography variant="h6">{title}</Typography><Chip size="small" label="Próximamente" /></Paper>)}</Box>
+    <Box className="upcoming-grid">{["Inflación", "Consenso de analistas", "Calendario Banxico"].map(title => <Paper className="upcoming-card" key={title}><Typography variant="h6">{title}</Typography><Chip size="small" label="Próximamente" /></Paper>)}</Box>
   </Container></Box>;
 }
 

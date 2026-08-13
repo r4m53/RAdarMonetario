@@ -1,0 +1,4854 @@
+{
+  "file": "banxico_expectativas_pronosticos.xlsm",
+  "size": 2230520,
+  "sheets": [
+    {
+      "name": "README",
+      "state": "visible",
+      "range": "A1:H24",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "B1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "C1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "D1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "E1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "F1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "G1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "H1",
+          "value": "BANXICO | Encuesta de Expectativas — Workbook de Análisis Histórico"
+        },
+        {
+          "cell": "A3",
+          "value": "Propósito"
+        },
+        {
+          "cell": "B3",
+          "value": "MVP auditable para inflación, PIB y tasa de fondeo; preparado para posteriores datos realizados."
+        },
+        {
+          "cell": "A5",
+          "value": "Fuentes y metodología"
+        },
+        {
+          "cell": "A6",
+          "value": "Fuentes"
+        },
+        {
+          "cell": "B6",
+          "value": "SIE Banco de México: CR154, CR155, CR156, CR165, CR356, CR168 y CR169. Los PDFs se reservan para validar cambios metodológicos."
+        },
+        {
+          "cell": "A7",
+          "value": "Fecha de extracción"
+        },
+        {
+          "cell": "B7",
+          "value": "2026-08-10 (semilla validada con observaciones May–Jul 2026 del SIE)."
+        },
+        {
+          "cell": "A8",
+          "value": "survey_date"
+        },
+        {
+          "cell": "B8",
+          "value": "Primer día del mes de referencia del levantamiento; es distinto de publication_date."
+        },
+        {
+          "cell": "A9",
+          "value": "target_date"
+        },
+        {
+          "cell": "B9",
+          "value": "31-dic para cierres anuales; último día del trimestre para pronósticos trimestrales. No se inventa para largo plazo / 12 meses."
+        },
+        {
+          "cell": "A10",
+          "value": "horizon_months"
+        },
+        {
+          "cell": "B10",
+          "value": "Diferencia calendario (mes del target menos mes de survey_date). Si no hay fecha objetivo definida se deja vacío. horizon_label = T-N."
+        },
+        {
+          "cell": "A11",
+          "value": "Identificadores"
+        },
+        {
+          "cell": "B11",
+          "value": "survey_id = SURV_YYYYMM; indicator_id = INF_GEN / INF_SUB / GDP_REAL / FONDEO; period_id = A_YYYY o Q_YYYYQ#; forecast_id = survey_id|indicator_id|period_id."
+        },
+        {
+          "cell": "A12",
+          "value": "Actuals / errores"
+        },
+        {
+          "cell": "B12",
+          "value": "actual_value, forecast_error, absolute_error y squared_error están vacíos por diseño hasta incorporar realizados."
+        },
+        {
+          "cell": "A13",
+          "value": "Actualización"
+        },
+        {
+          "cell": "B13",
+          "value": "Ejecute update_banxico.mjs con BANXICO_SIE_TOKEN, resuelva IDs oficiales en series_map.json y después build_workbook.mjs. El actualizador no usa PDFs ni Selenium."
+        },
+        {
+          "cell": "A14",
+          "value": "Limitaciones"
+        },
+        {
+          "cell": "B14",
+          "value": "La semilla cubre observaciones publicadas de 2026 para comprobar arquitectura. Para cobertura completa use la API SIE con IDs resueltos; no mezclar CR169 (dirección) con niveles de fondeo."
+        },
+        {
+          "cell": "A15",
+          "value": "Cambio metodológico"
+        },
+        {
+          "cell": "B15",
+          "value": "Las estructuras relativas expresan t, t+1 y t+2: el target se deriva de survey_year + el offset documentado. Revise notas SIE antes de concatenar periodos nuevos."
+        },
+        {
+          "cell": "A16",
+          "value": "Lectura del libro"
+        },
+        {
+          "cell": "A17",
+          "value": "DATA_RAW"
+        },
+        {
+          "cell": "B17",
+          "value": "Base normalizada y columnas calculadas."
+        },
+        {
+          "cell": "A18",
+          "value": "INFLATION / GDP / FONDEO"
+        },
+        {
+          "cell": "B18",
+          "value": "Vistas filtrables y auxiliares de análisis por grupo."
+        },
+        {
+          "cell": "A19",
+          "value": "HEATMAP"
+        },
+        {
+          "cell": "B19",
+          "value": "Matriz de revisiones de mediana con escala divergente."
+        },
+        {
+          "cell": "A20",
+          "value": "DASHBOARD"
+        },
+        {
+          "cell": "B20",
+          "value": "Controles y KPIs; las gráficas se alimentan de tablas auxiliares con fórmulas."
+        }
+      ]
+    },
+    {
+      "name": "ACTUALS_RAW",
+      "state": "visible",
+      "range": "A1:N377",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "actual_id"
+        },
+        {
+          "cell": "B1",
+          "value": "indicator_id"
+        },
+        {
+          "cell": "C1",
+          "value": "indicator_name"
+        },
+        {
+          "cell": "D1",
+          "value": "period_id"
+        },
+        {
+          "cell": "E1",
+          "value": "actual_key"
+        },
+        {
+          "cell": "F1",
+          "value": "target_date"
+        },
+        {
+          "cell": "G1",
+          "value": "actual_value"
+        },
+        {
+          "cell": "H1",
+          "value": "actual_observation_date"
+        },
+        {
+          "cell": "I1",
+          "value": "source_table_id"
+        },
+        {
+          "cell": "J1",
+          "value": "source_series_id"
+        },
+        {
+          "cell": "K1",
+          "value": "source_url"
+        },
+        {
+          "cell": "L1",
+          "value": "selection_rule"
+        },
+        {
+          "cell": "M1",
+          "value": "revision_vintage"
+        },
+        {
+          "cell": "N1",
+          "value": "notes"
+        },
+        {
+          "cell": "A2",
+          "value": "ACT_Crecimiento PIB real anual_A_1999"
+        },
+        {
+          "cell": "B2",
+          "value": "GDP_REAL"
+        },
+        {
+          "cell": "C2",
+          "value": "Crecimiento PIB real anual"
+        },
+        {
+          "cell": "D2",
+          "value": "A_1999"
+        },
+        {
+          "cell": "E2",
+          "value": "GDP_REAL|A_1999"
+        },
+        {
+          "cell": "F2",
+          "value": "36525"
+        },
+        {
+          "cell": "G2",
+          "value": "2.7550300000000001"
+        },
+        {
+          "cell": "H2",
+          "value": "36525"
+        },
+        {
+          "cell": "I2",
+          "value": "CR373"
+        },
+        {
+          "cell": "J2",
+          "value": "INEGI-735954"
+        },
+        {
+          "cell": "K2",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR373&locale=es&sector=2"
+        },
+        {
+          "cell": "L2",
+          "value": "Variación anual calculada con el promedio de los cuatro trimestres del PIB real a precios de 2018."
+        },
+        {
+          "cell": "M2",
+          "value": "Consulta 2026-08-12"
+        },
+        {
+          "cell": "N2",
+          "value": "Fuente original: INEGI; cálculo documentado."
+        },
+        {
+          "cell": "A3",
+          "value": "ACT_Crecimiento PIB real anual_A_1999"
+        },
+        {
+          "cell": "B3",
+          "value": "GDP_REAL"
+        },
+        {
+          "cell": "C3",
+          "value": "Crecimiento PIB real anual"
+        },
+        {
+          "cell": "D3",
+          "value": "A_1999"
+        },
+        {
+          "cell": "E3",
+          "value": "GDP_REAL|A_1999"
+        },
+        {
+          "cell": "F3",
+          "value": "36525"
+        },
+        {
+          "cell": "G3",
+          "value": "2.7550300000000001"
+        },
+        {
+          "cell": "H3",
+          "value": "36525"
+        },
+        {
+          "cell": "I3",
+          "value": "CR373"
+        },
+        {
+          "cell": "J3",
+          "value": "INEGI-735954"
+        },
+        {
+          "cell": "K3",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR373&locale=es&sector=2"
+        },
+        {
+          "cell": "L3",
+          "value": "Variación anual calculada con el promedio de los cuatro trimestres del PIB real a precios de 2018."
+        }
+      ]
+    },
+    {
+      "name": "DATA_RAW",
+      "state": "visible",
+      "range": "A1:AO8035",
+      "formulaCount": 7169,
+      "formulaSamples": [
+        {
+          "cell": "AO8",
+          "formula": "TEXT(A8,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO9",
+          "formula": "TEXT(A9,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO10",
+          "formula": "TEXT(A10,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO11",
+          "formula": "TEXT(A11,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO14",
+          "formula": "TEXT(A14,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO15",
+          "formula": "TEXT(A15,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO16",
+          "formula": "TEXT(A16,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO17",
+          "formula": "TEXT(A17,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO20",
+          "formula": "TEXT(A20,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO21",
+          "formula": "TEXT(A21,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO22",
+          "formula": "TEXT(A22,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO23",
+          "formula": "TEXT(A23,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO26",
+          "formula": "TEXT(A26,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO27",
+          "formula": "TEXT(A27,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO28",
+          "formula": "TEXT(A28,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO29",
+          "formula": "TEXT(A29,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO32",
+          "formula": "TEXT(A32,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO33",
+          "formula": "TEXT(A33,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO34",
+          "formula": "TEXT(A34,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO35",
+          "formula": "TEXT(A35,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO38",
+          "formula": "TEXT(A38,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO39",
+          "formula": "TEXT(A39,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO40",
+          "formula": "TEXT(A40,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO41",
+          "formula": "TEXT(A41,\"yyyy-mm-dd\")"
+        },
+        {
+          "cell": "AO44",
+          "formula": "TEXT(A44,\"yyyy-mm-dd\")"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "B1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "C1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "D1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "E1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "F1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "G1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "H1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "I1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "J1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "K1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "L1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "M1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "N1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "O1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "P1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Q1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "R1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "S1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "T1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "U1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "V1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "W1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "X1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Y1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "Z1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AA1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AB1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AC1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AD1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AE1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AF1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AG1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AH1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AI1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AJ1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AK1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AL1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AM1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        },
+        {
+          "cell": "AN1",
+          "value": "DATA_RAW | Base maestra normalizada"
+        }
+      ]
+    },
+    {
+      "name": "HEATMAP",
+      "state": "visible",
+      "range": "A1:H3",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "B1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "C1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "D1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "E1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "F1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "G1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "H1",
+          "value": "HEATMAP | Retirada"
+        },
+        {
+          "cell": "A3",
+          "value": "Esta hoja queda disponible para visualizaciones futuras. La fuente de verdad es DATA_RAW y los catálogos SURVEY_MAP, INDICATOR_MAP, FIELD_MAP y PERIOD_MAP."
+        }
+      ]
+    },
+    {
+      "name": "DASHBOARD",
+      "state": "visible",
+      "range": "A1:H3",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "B1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "C1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "D1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "E1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "F1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "G1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "H1",
+          "value": "DASHBOARD | Retirada"
+        },
+        {
+          "cell": "A3",
+          "value": "Esta hoja queda disponible para visualizaciones futuras. La fuente de verdad es DATA_RAW y los catálogos SURVEY_MAP, INDICATOR_MAP, FIELD_MAP y PERIOD_MAP."
+        }
+      ]
+    },
+    {
+      "name": "SERIES_MAP",
+      "state": "visible",
+      "range": "A1:J16",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "B1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "C1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "D1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "E1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "F1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "G1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "H1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "I1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "J1",
+          "value": "SERIES_MAP | Inventario de estructuras SIE utilizadas"
+        },
+        {
+          "cell": "A3",
+          "value": "variable"
+        },
+        {
+          "cell": "B3",
+          "value": "descripción Banxico"
+        },
+        {
+          "cell": "C3",
+          "value": "series ID"
+        },
+        {
+          "cell": "D3",
+          "value": "table ID"
+        },
+        {
+          "cell": "E3",
+          "value": "unidad"
+        },
+        {
+          "cell": "F3",
+          "value": "frecuencia"
+        },
+        {
+          "cell": "G3",
+          "value": "fecha inicial"
+        },
+        {
+          "cell": "H3",
+          "value": "fecha final"
+        },
+        {
+          "cell": "I3",
+          "value": "URL fuente"
+        },
+        {
+          "cell": "J3",
+          "value": "observaciones metodológicas"
+        },
+        {
+          "cell": "A4",
+          "value": "Inflación general / subyacente"
+        },
+        {
+          "cell": "B4",
+          "value": "Expectativas de Inflación Anual"
+        },
+        {
+          "cell": "C4",
+          "value": "Resolver en metadata API"
+        },
+        {
+          "cell": "D4",
+          "value": "CR154"
+        },
+        {
+          "cell": "E4",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "F4",
+          "value": "Mensual"
+        },
+        {
+          "cell": "G4",
+          "value": "1999-01"
+        },
+        {
+          "cell": "H4",
+          "value": "2026-07"
+        },
+        {
+          "cell": "I4",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR154&locale=es&sector=24"
+        },
+        {
+          "cell": "J4",
+          "value": "t, t+1 y t+2; cada estadístico debe mantenerse como fila separada."
+        },
+        {
+          "cell": "A5",
+          "value": "Inflación general / subyacente"
+        },
+        {
+          "cell": "B5",
+          "value": "Próximos 12 meses"
+        },
+        {
+          "cell": "C5",
+          "value": "Resolver en metadata API"
+        },
+        {
+          "cell": "D5",
+          "value": "CR155"
+        },
+        {
+          "cell": "E5",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "F5",
+          "value": "Mensual"
+        },
+        {
+          "cell": "G5",
+          "value": "1999-01"
+        },
+        {
+          "cell": "H5",
+          "value": "2026-07"
+        },
+        {
+          "cell": "I5",
+          "value": "https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CR155&locale=es&sector=24"
+        },
+        {
+          "cell": "J5",
+          "value": "Horizonte móvil: sin target_date puntual."
+        }
+      ]
+    },
+    {
+      "name": "SURVEY_MAP",
+      "state": "visible",
+      "range": "A1:E334",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "B1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "C1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "D1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "E1",
+          "value": "SURVEY_MAP | Mapeo de levantamientos"
+        },
+        {
+          "cell": "A3",
+          "value": "survey_id"
+        },
+        {
+          "cell": "B3",
+          "value": "survey_date"
+        },
+        {
+          "cell": "C3",
+          "value": "survey_year"
+        },
+        {
+          "cell": "D3",
+          "value": "survey_month"
+        },
+        {
+          "cell": "E3",
+          "value": "convención"
+        },
+        {
+          "cell": "A4",
+          "value": "SURV_199901"
+        },
+        {
+          "cell": "B4",
+          "value": "1999-01-31"
+        },
+        {
+          "cell": "C4",
+          "value": "1999"
+        },
+        {
+          "cell": "D4",
+          "value": "1"
+        },
+        {
+          "cell": "E4",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A5",
+          "value": "SURV_199902"
+        },
+        {
+          "cell": "B5",
+          "value": "1999-02-28"
+        },
+        {
+          "cell": "C5",
+          "value": "1999"
+        },
+        {
+          "cell": "D5",
+          "value": "2"
+        },
+        {
+          "cell": "E5",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A6",
+          "value": "SURV_199903"
+        },
+        {
+          "cell": "B6",
+          "value": "1999-03-31"
+        },
+        {
+          "cell": "C6",
+          "value": "1999"
+        },
+        {
+          "cell": "D6",
+          "value": "3"
+        },
+        {
+          "cell": "E6",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A7",
+          "value": "SURV_199904"
+        },
+        {
+          "cell": "B7",
+          "value": "1999-04-30"
+        },
+        {
+          "cell": "C7",
+          "value": "1999"
+        },
+        {
+          "cell": "D7",
+          "value": "4"
+        },
+        {
+          "cell": "E7",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A8",
+          "value": "SURV_199905"
+        },
+        {
+          "cell": "B8",
+          "value": "1999-05-31"
+        },
+        {
+          "cell": "C8",
+          "value": "1999"
+        },
+        {
+          "cell": "D8",
+          "value": "5"
+        },
+        {
+          "cell": "E8",
+          "value": "Último día del mes de referencia"
+        },
+        {
+          "cell": "A9",
+          "value": "SURV_199906"
+        },
+        {
+          "cell": "B9",
+          "value": "1999-06-30"
+        },
+        {
+          "cell": "C9",
+          "value": "1999"
+        },
+        {
+          "cell": "D9",
+          "value": "6"
+        },
+        {
+          "cell": "E9",
+          "value": "Último día del mes de referencia"
+        }
+      ]
+    },
+    {
+      "name": "INDICATOR_MAP",
+      "state": "visible",
+      "range": "A1:E12",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "B1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "C1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "D1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "E1",
+          "value": "INDICATOR_MAP | Mapeo de indicadores"
+        },
+        {
+          "cell": "A3",
+          "value": "indicator_id"
+        },
+        {
+          "cell": "B3",
+          "value": "variable"
+        },
+        {
+          "cell": "C3",
+          "value": "variable_group"
+        },
+        {
+          "cell": "D3",
+          "value": "tablas SIE"
+        },
+        {
+          "cell": "E3",
+          "value": "unidad"
+        },
+        {
+          "cell": "A4",
+          "value": "INF_GEN"
+        },
+        {
+          "cell": "B4",
+          "value": "Inflación general"
+        },
+        {
+          "cell": "C4",
+          "value": "INFLATION"
+        },
+        {
+          "cell": "D4",
+          "value": "CR154, CR155, CR156"
+        },
+        {
+          "cell": "E4",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "A5",
+          "value": "INF_SUB"
+        },
+        {
+          "cell": "B5",
+          "value": "Inflación subyacente"
+        },
+        {
+          "cell": "C5",
+          "value": "INFLATION"
+        },
+        {
+          "cell": "D5",
+          "value": "CR154, CR155, CR156"
+        },
+        {
+          "cell": "E5",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "A6",
+          "value": "GDP_REAL"
+        },
+        {
+          "cell": "B6",
+          "value": "Crecimiento PIB real (incluye promedio 10 años)"
+        },
+        {
+          "cell": "C6",
+          "value": "GDP"
+        },
+        {
+          "cell": "D6",
+          "value": "CR164, CR165"
+        },
+        {
+          "cell": "E6",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "A7",
+          "value": "FONDEO"
+        },
+        {
+          "cell": "B7",
+          "value": "Tasa de fondeo interbancario"
+        },
+        {
+          "cell": "C7",
+          "value": "FONDEO"
+        },
+        {
+          "cell": "D7",
+          "value": "CR168"
+        },
+        {
+          "cell": "E7",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "A8",
+          "value": "CETE28"
+        },
+        {
+          "cell": "B8",
+          "value": "Tasa Cete a 28 días"
+        },
+        {
+          "cell": "C8",
+          "value": "FONDEO"
+        },
+        {
+          "cell": "D8",
+          "value": "CR170"
+        },
+        {
+          "cell": "E8",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "A9",
+          "value": "BONO_M10"
+        },
+        {
+          "cell": "B9",
+          "value": "Tasa Bonos M a 10 años"
+        },
+        {
+          "cell": "C9",
+          "value": "FONDEO"
+        },
+        {
+          "cell": "D9",
+          "value": "CR189"
+        },
+        {
+          "cell": "E9",
+          "value": "Por ciento"
+        }
+      ]
+    },
+    {
+      "name": "FIELD_MAP",
+      "state": "visible",
+      "range": "A1:D10",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "B1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "C1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "D1",
+          "value": "FIELD_MAP | Diccionario de campos e IDs"
+        },
+        {
+          "cell": "A3",
+          "value": "field"
+        },
+        {
+          "cell": "B3",
+          "value": "descripción"
+        },
+        {
+          "cell": "C3",
+          "value": "formato / ejemplos"
+        },
+        {
+          "cell": "D3",
+          "value": "uso"
+        },
+        {
+          "cell": "A4",
+          "value": "survey_id"
+        },
+        {
+          "cell": "B4",
+          "value": "ID de levantamiento"
+        },
+        {
+          "cell": "C4",
+          "value": "SURV_YYYYMM"
+        },
+        {
+          "cell": "D4",
+          "value": "Llave de fecha de encuesta"
+        },
+        {
+          "cell": "A5",
+          "value": "indicator_id"
+        },
+        {
+          "cell": "B5",
+          "value": "ID de indicador"
+        },
+        {
+          "cell": "C5",
+          "value": "INF_GEN / INF_SUB / GDP_REAL / FONDEO / CETE28 / BONO_M10"
+        },
+        {
+          "cell": "D5",
+          "value": "Dimensión de variable"
+        },
+        {
+          "cell": "A6",
+          "value": "period_id"
+        },
+        {
+          "cell": "B6",
+          "value": "ID de periodo objetivo"
+        },
+        {
+          "cell": "C6",
+          "value": "A_YYYY / Q_YYYYQ# / LT_1_4Y / LT_5_8Y / LT_10Y"
+        },
+        {
+          "cell": "D6",
+          "value": "No inventa fecha para largo plazo"
+        },
+        {
+          "cell": "A7",
+          "value": "forecast_id"
+        },
+        {
+          "cell": "B7",
+          "value": "ID único de pronóstico"
+        },
+        {
+          "cell": "C7",
+          "value": "survey_id|indicator_id|period_id"
+        },
+        {
+          "cell": "D7",
+          "value": "Llave recomendada para joins"
+        },
+        {
+          "cell": "A8",
+          "value": "chart_date"
+        },
+        {
+          "cell": "B8",
+          "value": "Fecha para graficar"
+        },
+        {
+          "cell": "C8",
+          "value": "m/dd/yy"
+        },
+        {
+          "cell": "D8",
+          "value": "Igual a target_date; cierre efectivo de trimestre/año"
+        },
+        {
+          "cell": "A9",
+          "value": "horizon_months"
+        },
+        {
+          "cell": "B9",
+          "value": "Horizonte numérico"
+        },
+        {
+          "cell": "C9",
+          "value": "Entero"
+        },
+        {
+          "cell": "D9",
+          "value": "Vacío cuando el SIE no define fecha objetivo"
+        },
+        {
+          "cell": "A10",
+          "value": "Revision_1M"
+        },
+        {
+          "cell": "B10",
+          "value": "Cambio frente a encuesta previa"
+        },
+        {
+          "cell": "C10",
+          "value": "Por ciento"
+        },
+        {
+          "cell": "D10",
+          "value": "Mismo indicador y periodo objetivo"
+        }
+      ]
+    },
+    {
+      "name": "PERIOD_MAP",
+      "state": "visible",
+      "range": "A1:E234",
+      "formulaCount": 0,
+      "formulaSamples": [],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "PERIOD_MAP | Periodos objetivo"
+        },
+        {
+          "cell": "B1",
+          "value": "PERIOD_MAP | Periodos objetivo"
+        },
+        {
+          "cell": "C1",
+          "value": "PERIOD_MAP | Periodos objetivo"
+        },
+        {
+          "cell": "D1",
+          "value": "PERIOD_MAP | Periodos objetivo"
+        },
+        {
+          "cell": "E1",
+          "value": "PERIOD_MAP | Periodos objetivo"
+        },
+        {
+          "cell": "A3",
+          "value": "period_id"
+        },
+        {
+          "cell": "B3",
+          "value": "target_period"
+        },
+        {
+          "cell": "C3",
+          "value": "target_year"
+        },
+        {
+          "cell": "D3",
+          "value": "target_quarter"
+        },
+        {
+          "cell": "E3",
+          "value": "target_date / chart_date"
+        },
+        {
+          "cell": "A4",
+          "value": "A_1999"
+        },
+        {
+          "cell": "B4",
+          "value": "1999"
+        },
+        {
+          "cell": "C4",
+          "value": "1999"
+        },
+        {
+          "cell": "E4",
+          "value": "1999-12-31"
+        },
+        {
+          "cell": "A5",
+          "value": "A_2000"
+        },
+        {
+          "cell": "B5",
+          "value": "2000"
+        },
+        {
+          "cell": "C5",
+          "value": "2000"
+        },
+        {
+          "cell": "E5",
+          "value": "2000-12-31"
+        },
+        {
+          "cell": "A6",
+          "value": "Q_1999Q1"
+        },
+        {
+          "cell": "B6",
+          "value": "1T99"
+        },
+        {
+          "cell": "C6",
+          "value": "1999"
+        },
+        {
+          "cell": "D6",
+          "value": "1"
+        },
+        {
+          "cell": "E6",
+          "value": "1999-03-31"
+        },
+        {
+          "cell": "A7",
+          "value": "Mejorará"
+        },
+        {
+          "cell": "B7",
+          "value": "Mejorará"
+        },
+        {
+          "cell": "A8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "B8",
+          "value": "Permanecerá igual"
+        },
+        {
+          "cell": "A9",
+          "value": "Empeorará"
+        },
+        {
+          "cell": "B9",
+          "value": "Empeorará"
+        },
+        {
+          "cell": "A10",
+          "value": "Número de respuestas"
+        },
+        {
+          "cell": "B10",
+          "value": "Número de respuestas"
+        },
+        {
+          "cell": "A11",
+          "value": "Sí"
+        },
+        {
+          "cell": "B11",
+          "value": "Sí"
+        },
+        {
+          "cell": "A12",
+          "value": "No"
+        },
+        {
+          "cell": "B12",
+          "value": "No"
+        },
+        {
+          "cell": "A13",
+          "value": "Buen momento"
+        },
+        {
+          "cell": "B13",
+          "value": "Buen momento"
+        },
+        {
+          "cell": "A14",
+          "value": "Mal momento"
+        },
+        {
+          "cell": "B14",
+          "value": "Mal momento"
+        },
+        {
+          "cell": "A15",
+          "value": "No está seguro"
+        }
+      ]
+    },
+    {
+      "name": "ARQUITECTURA",
+      "state": "visible",
+      "range": "A1:H41",
+      "formulaCount": 4,
+      "formulaSamples": [
+        {
+          "cell": "B8",
+          "formula": "ROWS(tblDataRaw[forecast_id])"
+        },
+        {
+          "cell": "B9",
+          "formula": "COLUMNS(tblDataRaw[#Headers])"
+        },
+        {
+          "cell": "B10",
+          "formula": "COUNTA(SURVEY_MAP!A4:A334)"
+        },
+        {
+          "cell": "B11",
+          "formula": "COUNTA(INDICATOR_MAP!A4:A12)"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "ARQUITECTURA | Diagnóstico y recomendación"
+        },
+        {
+          "cell": "A3",
+          "value": "Conclusión"
+        },
+        {
+          "cell": "A4",
+          "value": "Veredicto"
+        },
+        {
+          "cell": "B4",
+          "value": "El volumen y el patrón de uso permiten mantener Excel como fuente única de verdad. La separación necesaria es entre el libro maestro y los archivos JSON derivados para visualización."
+        },
+        {
+          "cell": "A5",
+          "value": "Recomendación"
+        },
+        {
+          "cell": "B5",
+          "value": "No implementar una base de datos operativa por ahora. Mantener DATA_RAW y los catálogos como modelo maestro; generar JSON estático para el sitio mediante un proceso de exportación reproducible."
+        },
+        {
+          "cell": "A7",
+          "value": "Métricas actuales"
+        },
+        {
+          "cell": "D7",
+          "value": "Lectura del riesgo"
+        },
+        {
+          "cell": "A8",
+          "value": "Registros DATA_RAW"
+        },
+        {
+          "cell": "B8",
+          "value": "8030"
+        },
+        {
+          "cell": "D8",
+          "value": "Volumen"
+        },
+        {
+          "cell": "E8",
+          "value": "Bajo: 28.6 mil filas frente a la capacidad de una hoja."
+        },
+        {
+          "cell": "A9",
+          "value": "Columnas DATA_RAW"
+        },
+        {
+          "cell": "B9",
+          "value": "41"
+        },
+        {
+          "cell": "D9",
+          "value": "Mantenimiento"
+        },
+        {
+          "cell": "E9",
+          "value": "Medio-alto: 40 columnas combinan dimensiones, métricas, fuentes y cálculos."
+        },
+        {
+          "cell": "A10",
+          "value": "Levantamientos catalogados"
+        },
+        {
+          "cell": "B10",
+          "value": "331"
+        },
+        {
+          "cell": "D10",
+          "value": "Publicación web"
+        },
+        {
+          "cell": "E10",
+          "value": "Bajo-medio: el sitio no debe leer Excel directamente; debe consumir una versión JSON generada y validada."
+        },
+        {
+          "cell": "A11",
+          "value": "Indicadores catalogados"
+        },
+        {
+          "cell": "B11",
+          "value": "9"
+        },
+        {
+          "cell": "D11",
+          "value": "Escalabilidad analítica"
+        },
+        {
+          "cell": "E11",
+          "value": "Medio: agregar variables y encuestas de opinión hará más heterogénea DATA_RAW."
+        },
+        {
+          "cell": "A12",
+          "value": "Grupos de variable"
+        },
+        {
+          "cell": "B12",
+          "value": "INFLATION, GDP, FONDEO, RATES y OPINION"
+        },
+        {
+          "cell": "D12",
+          "value": "Gobernanza"
+        },
+        {
+          "cell": "E12",
+          "value": "Medio: forecast_id es una buena llave, pero pronósticos y opinión deberían ser hechos separados."
+        },
+        {
+          "cell": "A13",
+          "value": "Tablas / gráficas actuales"
+        },
+        {
+          "cell": "B13",
+          "value": "1 tabla maestra / 0 gráficas"
+        },
+        {
+          "cell": "D13",
+          "value": "Decisión confirmada"
+        },
+        {
+          "cell": "E13",
+          "value": "La vista transversal se basa en survey_date, no en publication_date. La ausencia de publication_date no bloquea el producto planteado."
+        },
+        {
+          "cell": "A14",
+          "value": "Dependencia publication_date"
+        },
+        {
+          "cell": "B14",
+          "value": "No requerida para la vista transversal definida"
+        },
+        {
+          "cell": "A15",
+          "value": "Arquitectura recomendada"
+        },
+        {
+          "cell": "A16",
+          "value": "1. Ingesta"
+        },
+        {
+          "cell": "B16",
+          "value": "API SIE → actualización controlada de Excel. Conservar fecha de extracción, tabla y serie fuente para auditoría."
+        },
+        {
+          "cell": "A17",
+          "value": "2. Fuente maestra"
+        },
+        {
+          "cell": "B17",
+          "value": "Excel permanece como fuente única de verdad: DATA_RAW para hechos y hojas MAP para catálogos y definiciones."
+        },
+        {
+          "cell": "A18",
+          "value": "3. Modelo"
+        }
+      ]
+    },
+    {
+      "name": "INFLATION",
+      "state": "visible",
+      "range": "A1:X332",
+      "formulaCount": 9,
+      "formulaSamples": [
+        {
+          "cell": "X2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],tblDataRaw[variable_group]=\"INFLATION\"))),,-1)"
+        },
+        {
+          "cell": "B4",
+          "formula": "INFLATION_CHART!B4"
+        },
+        {
+          "cell": "E4",
+          "formula": "$X$2"
+        },
+        {
+          "cell": "B5",
+          "formula": "INFLATION_CHART!B5"
+        },
+        {
+          "cell": "E5",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[indicator_id],\"INF_GEN\"))"
+        },
+        {
+          "cell": "B6",
+          "formula": "INFLATION_CHART!B6"
+        },
+        {
+          "cell": "E6",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[indicator_id],\"INF_SUB\"))"
+        },
+        {
+          "cell": "A10",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[indicator_id]=\"INF_GEN\"),_xlfn._xlws.SORT(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),1,1))"
+        },
+        {
+          "cell": "L10",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[indicator_id]=\"INF_SUB\"),_xlfn._xlws.SORT(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),1,1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INFLACIÓN | Visualizador transversal por encuesta"
+        },
+        {
+          "cell": "X1",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione la encuesta; ambos paneles muestran todos los horizontes disponibles para la misma survey_date."
+        },
+        {
+          "cell": "X2",
+          "value": "46234"
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta controlada desde INFLATION_CHART"
+        },
+        {
+          "cell": "X3",
+          "value": "46203"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Última disponible"
+        },
+        {
+          "cell": "D4",
+          "value": "Última encuesta disponible"
+        },
+        {
+          "cell": "E4",
+          "value": "46234"
+        },
+        {
+          "cell": "X4",
+          "value": "46173"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "D5",
+          "value": "Pronósticos general"
+        },
+        {
+          "cell": "E5",
+          "value": "5"
+        },
+        {
+          "cell": "X5",
+          "value": "46142"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "D6",
+          "value": "Pronósticos subyacente"
+        },
+        {
+          "cell": "E6",
+          "value": "5"
+        },
+        {
+          "cell": "X6",
+          "value": "46112"
+        },
+        {
+          "cell": "X7",
+          "value": "46081"
+        },
+        {
+          "cell": "A8",
+          "value": "Inflación general"
+        },
+        {
+          "cell": "L8",
+          "value": "Inflación subyacente"
+        },
+        {
+          "cell": "X8",
+          "value": "46053"
+        },
+        {
+          "cell": "A9",
+          "value": "Tipo de pronóstico"
+        },
+        {
+          "cell": "B9",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "C9",
+          "value": "Horizonte"
+        },
+        {
+          "cell": "D9",
+          "value": "Media"
+        },
+        {
+          "cell": "E9",
+          "value": "Mediana"
+        },
+        {
+          "cell": "F9",
+          "value": "Q1"
+        },
+        {
+          "cell": "G9",
+          "value": "Q3"
+        },
+        {
+          "cell": "H9",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "I9",
+          "value": "Máximo"
+        },
+        {
+          "cell": "J9",
+          "value": "Respuestas"
+        },
+        {
+          "cell": "L9",
+          "value": "Tipo de pronóstico"
+        },
+        {
+          "cell": "M9",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "N9",
+          "value": "Horizonte"
+        },
+        {
+          "cell": "O9",
+          "value": "Media"
+        },
+        {
+          "cell": "P9",
+          "value": "Mediana"
+        }
+      ]
+    },
+    {
+      "name": "INFLATION_CHART",
+      "state": "visible",
+      "range": "A1:T14",
+      "formulaCount": 4,
+      "formulaSamples": [
+        {
+          "cell": "B5",
+          "formula": "INFLATION!$X$2"
+        },
+        {
+          "cell": "N5",
+          "formula": "\"Pronósticos de inflación para la encuesta de \"&TEXT(B6,\"[$-es-MX]mmmm yyyy\")"
+        },
+        {
+          "cell": "B6",
+          "formula": "IF(B4=\"Última disponible\",INFLATION!$X$2,B5)"
+        },
+        {
+          "cell": "R9",
+          "formula": "_xlfn.LET(_xlpm.cat,_xlfn._xlws.FILTER(INFLATION!A10:A200,INFLATION!A10:A200<>\"\")&\" | \"&_xlfn._xlws.FILTER(INFLATION!B10:B200,INFLATION!A10:A200<>\"\"),_xlpm.g,_xlfn._xlws.FILTER(INFLATION!D10:I200,INFLATION!A10:A200<>\"\"),_xlpm.s,_xlfn._xlws.FILTER(INFLATION!O10:T200,INFLATION!L10:L200<>\"\"),_xlpm.hdr,_xlfn.HSTACK(\"Pronóstico\",\"General - Media\",\"General - Mediana\",\"General - Q1\",\"General - Q3\",\"General - Mínimo\",\"General - Máximo\",\"Subyacente - Media\",\"Subyacente - Mediana\",\"Subyacente - Q1\",\"Subyacente - Q3\",\"Subyacente - Mínimo\",\"Subyacente - Máximo\"),_xlpm.all,_xlfn.VSTACK(_xlpm.hdr,_xlfn.HSTACK(_xlpm.cat,_xlpm.g,_xlpm.s)),_xlpm.m,_xlfn.HSTACK($H$4,$H$5,$J$4,$J$5,$L$4,$L$5),_xlpm.mask,_xlfn.HSTACK(TRUE,_xlpm.m*--$E$4,_xlpm.m*--$E$5),TRANSPOSE(_xlfn._xlws.FILTER(TRANSPOSE(_xlpm.all),TRANSPOSE(_xlpm.mask))))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INFLACIÓN | Gráfica interactiva"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione encuesta, variables y estadísticos; el detalle permanece en la hoja INFLATION."
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta"
+        },
+        {
+          "cell": "D3",
+          "value": "Variables"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Última disponible"
+        },
+        {
+          "cell": "D4",
+          "value": "Inflación general"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "0"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "0"
+        },
+        {
+          "cell": "N4",
+          "value": "Marque al menos un estadístico; puede combinar ambas inflaciones."
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "D5",
+          "value": "Inflación subyacente"
+        },
+        {
+          "cell": "E5",
+          "value": "1"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "0"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "0"
+        },
+        {
+          "cell": "N5",
+          "value": "Pronósticos de inflación para la encuesta de julio 2026"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "R9",
+          "value": "Pronóstico"
+        },
+        {
+          "cell": "S9",
+          "value": "General - Mediana"
+        },
+        {
+          "cell": "T9",
+          "value": "Subyacente - Mediana"
+        },
+        {
+          "cell": "R10",
+          "value": "Cierre anual | 2028"
+        },
+        {
+          "cell": "S10",
+          "value": "3.75"
+        },
+        {
+          "cell": "T10",
+          "value": "3.75"
+        },
+        {
+          "cell": "R11",
+          "value": "Cierre anual | 2027"
+        },
+        {
+          "cell": "S11",
+          "value": "3.84"
+        },
+        {
+          "cell": "T11",
+          "value": "3.86"
+        },
+        {
+          "cell": "R12",
+          "value": "Cierre anual | 2026"
+        }
+      ]
+    },
+    {
+      "name": "INFLATION_HISTORY_DATA",
+      "state": "visible",
+      "range": "A1:AZ1000",
+      "formulaCount": 7,
+      "formulaSamples": [
+        {
+          "cell": "O2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[period_id],(tblDataRaw[variable_group]=\"INFLATION\")*(tblDataRaw[period_id]<>\"\"))))"
+        },
+        {
+          "cell": "AH2",
+          "formula": "_xlfn.MAP(_xlfn.ANCHORARRAY(O2),_xlfn.LAMBDA(_xlpm.p,IF(LEFT(_xlpm.p,2)=\"A_\",\"Cierre anual \"&RIGHT(_xlpm.p,4),IF(_xlpm.p=\"LT_1_4Y\",\"Promedio próximos 1–4 años\",IF(_xlpm.p=\"LT_5_8Y\",\"Promedio próximos 5–8 años\",_xlpm.p)))))"
+        },
+        {
+          "cell": "B4",
+          "formula": "INFLATION_HISTORY_CHART!B4"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],(tblDataRaw[variable_group]=\"INFLATION\")*(tblDataRaw[period_id]=_xlpm.p))))),_xlpm.dt,TEXT(_xlpm.d,\"yyyy-mm-dd\"),_xlpm.keys,tblDataRaw[survey_date]&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[period_id],_xlpm.gk,_xlpm.dt&\"|INF_GEN|\"&_xlpm.p,_xlpm.sk,_xlpm.dt&\"|INF_SUB|\"&_xlpm.p,_xlpm.hdr,_xlfn.HSTACK(\"Fecha encuesta\",\"General - Media\",\"General - Mediana\",\"General - Q1\",\"General - Q3\",\"General - Mínimo\",\"General - Máximo\",\"Subyacente - Media\",\"Subyacente - Mediana\",\"Subyacente - Q1\",\"Subyacente - Q3\",\"Subyacente - Mínimo\",\"Subyacente - Máximo\"),_xlpm.g,_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[mean],NA()),_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[median],NA()),_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[q1],NA()),_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[q3],NA()),_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[min],NA()),_xlfn.XLOOKUP(_xlpm.gk,_xlpm.keys,tblDataRaw[max],NA())),_xlpm.s,_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[mean],NA()),_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[median],NA()),_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[q1],NA()),_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[q3],NA()),_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[min],NA()),_xlfn.XLOOKUP(_xlpm.sk,_xlpm.keys,tblDataRaw[max],NA())),_xlfn.VSTACK(_xlpm.hdr,_xlfn.HSTACK(_xlpm.d,_xlpm.g,_xlpm.s)))"
+        },
+        {
+          "cell": "P8",
+          "formula": "_xlfn.LET(_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.hdr,_xlfn.DROP(_xlfn.TAKE(_xlpm.raw,1),,1),_xlpm.vals,_xlfn.DROP(_xlpm.raw,1,1),_xlpm.m,--_xlfn.HSTACK(INFLATION_HISTORY_CHART!$H$4,INFLATION_HISTORY_CHART!$H$5,INFLATION_HISTORY_CHART!$J$4,INFLATION_HISTORY_CHART!$J$5,INFLATION_HISTORY_CHART!$L$4,INFLATION_HISTORY_CHART!$L$5),_xlpm.mask,_xlfn.HSTACK(_xlpm.m*--INFLATION_HISTORY_CHART!$E$4,_xlpm.m*--INFLATION_HISTORY_CHART!$E$5),_xlpm.gSel,--INFLATION_HISTORY_CHART!$E$4*--(SUM(_xlpm.m)>0),_xlpm.sSel,--INFLATION_HISTORY_CHART!$E$5*--(SUM(_xlpm.m)>0),_xlpm.gOk,_xlfn.BYROW(_xlfn.CHOOSECOLS(_xlpm.vals,1,2,3,4,5,6),_xlfn.LAMBDA(_xlpm.r,SUM(--ISNUMBER(_xlpm.r)*_xlpm.m)>0)),_xlpm.sOk,_xlfn.BYROW(_xlfn.CHOOSECOLS(_xlpm.vals,7,8,9,10,11,12),_xlfn.LAMBDA(_xlpm.r,SUM(--ISNUMBER(_xlpm.r)*_xlpm.m)>0)),_xlpm.keep,IF(SUM(_xlpm.mask)=0,_xlfn.SEQUENCE(ROWS(_xlpm.d),,1,0)>0,IF(_xlpm.gSel,_xlpm.gOk,TRUE)*IF(_xlpm.sSel,_xlpm.sOk,TRUE)),_xlpm.fd,_xlfn._xlws.FILTER(_xlpm.d,_xlpm.keep),_xlpm.fv,_xlfn._xlws.FILTER(_xlpm.vals,_xlpm.keep),_xlpm.dates,TEXT(_xlpm.fd,\"[$-es-MX]mmm yyyy\"),_xlpm.activeHdr,IF(_xlpm.mask,_xlpm.hdr,\"\"),_xlpm.activeVals,IF(_xlpm.mask*ISNUMBER(_xlpm.fv),_xlpm.fv,NA()),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",_xlpm.activeHdr),_xlfn.HSTACK(_xlpm.dates,_xlpm.activeVals)))"
+        },
+        {
+          "cell": "AJ8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.gm,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,3),1),_xlpm.sm,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,9),1),_xlpm.ga,_xlfn.XLOOKUP(\"INF_GEN|\"&_xlpm.p,ACTUALS_RAW!$E$2:$E$350,ACTUALS_RAW!$G$2:$G$350,NA()),_xlpm.sa,_xlfn.XLOOKUP(\"INF_SUB|\"&_xlpm.p,ACTUALS_RAW!$E$2:$E$350,ACTUALS_RAW!$G$2:$G$350,NA()),_xlpm.ge,IF(INFLATION_HISTORY_CHART!$E$4*ISNUMBER(_xlpm.gm)*ISNUMBER(_xlpm.ga),_xlpm.gm-_xlpm.ga,NA()),_xlpm.se,IF(INFLATION_HISTORY_CHART!$E$5*ISNUMBER(_xlpm.sm)*ISNUMBER(_xlpm.sa),_xlpm.sm-_xlpm.sa,NA()),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",\"General - Error\",\"Subyacente - Error\"),_xlfn.HSTACK(_xlpm.d,_xlpm.ge,_xlpm.se)))"
+        },
+        {
+          "cell": "AM8",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.ANCHORARRAY($P$8),_xlpm.m,--_xlfn.HSTACK(INFLATION_HISTORY_CHART!$H$4,INFLATION_HISTORY_CHART!$H$5,INFLATION_HISTORY_CHART!$J$4,INFLATION_HISTORY_CHART!$J$5,INFLATION_HISTORY_CHART!$L$4,INFLATION_HISTORY_CHART!$L$5),_xlpm.mask,_xlfn.HSTACK(_xlpm.m*--INFLATION_HISTORY_CHART!$E$4,_xlpm.m*--INFLATION_HISTORY_CHART!$E$5),_xlpm.ga,_xlfn.XLOOKUP(\"INF_GEN|\"&$B$4,ACTUALS_RAW!$E$2:$E$350,ACTUALS_RAW!$G$2:$G$350,\"\"),_xlpm.sa,_xlfn.XLOOKUP(\"INF_SUB|\"&$B$4,ACTUALS_RAW!$E$2:$E$350,ACTUALS_RAW!$G$2:$G$350,\"\"),_xlpm.ad,_xlfn.XLOOKUP(\"INF_GEN|\"&$B$4,ACTUALS_RAW!$E$2:$E$350,ACTUALS_RAW!$F$2:$F$350,\"\"),_xlpm.actuals,_xlfn.HSTACK(_xlfn.SEQUENCE(1,6,_xlpm.ga,0),_xlfn.SEQUENCE(1,6,_xlpm.sa,0)),_xlpm.actualRow,_xlfn.HSTACK(\"Realizado\",IF(_xlpm.mask,_xlpm.actuals,\"\")),IF(ISNUMBER(_xlpm.ad),_xlfn.VSTACK(_xlpm.x,_xlpm.actualRow),_xlpm.x))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INFLACIÓN | Evolución histórica por periodo objetivo"
+        },
+        {
+          "cell": "O1",
+          "value": "Periodos disponibles"
+        },
+        {
+          "cell": "AH1",
+          "value": "Etiquetas de periodo"
+        },
+        {
+          "cell": "A2",
+          "value": "Fuente de datos del segundo visualizador. La selección se controla desde INFLATION_HISTORY_CHART."
+        },
+        {
+          "cell": "O2",
+          "value": "A_1999"
+        },
+        {
+          "cell": "AH2",
+          "value": "Cierre anual 1999"
+        },
+        {
+          "cell": "O3",
+          "value": "A_2000"
+        },
+        {
+          "cell": "AH3",
+          "value": "Cierre anual 2000"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo seleccionado"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2023"
+        },
+        {
+          "cell": "O4",
+          "value": "A_2001"
+        },
+        {
+          "cell": "AH4",
+          "value": "Cierre anual 2001"
+        },
+        {
+          "cell": "O5",
+          "value": "A_2002"
+        },
+        {
+          "cell": "AH5",
+          "value": "Cierre anual 2002"
+        },
+        {
+          "cell": "A6",
+          "value": "Matriz completa"
+        },
+        {
+          "cell": "O6",
+          "value": "A_2003"
+        },
+        {
+          "cell": "P6",
+          "value": "Matriz activa para gráfica"
+        },
+        {
+          "cell": "AH6",
+          "value": "Cierre anual 2003"
+        },
+        {
+          "cell": "AJ6",
+          "value": "Error de estimación (Mediana - Realizado)"
+        },
+        {
+          "cell": "AM6",
+          "value": "Matriz activa con realizado"
+        },
+        {
+          "cell": "O7",
+          "value": "A_2004"
+        },
+        {
+          "cell": "AH7",
+          "value": "Cierre anual 2004"
+        },
+        {
+          "cell": "A8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "B8",
+          "value": "General - Media"
+        },
+        {
+          "cell": "C8",
+          "value": "General - Mediana"
+        },
+        {
+          "cell": "D8",
+          "value": "General - Q1"
+        },
+        {
+          "cell": "E8",
+          "value": "General - Q3"
+        },
+        {
+          "cell": "F8",
+          "value": "General - Mínimo"
+        },
+        {
+          "cell": "G8",
+          "value": "General - Máximo"
+        },
+        {
+          "cell": "H8",
+          "value": "Subyacente - Media"
+        },
+        {
+          "cell": "I8",
+          "value": "Subyacente - Mediana"
+        },
+        {
+          "cell": "J8",
+          "value": "Subyacente - Q1"
+        },
+        {
+          "cell": "K8",
+          "value": "Subyacente - Q3"
+        },
+        {
+          "cell": "L8",
+          "value": "Subyacente - Mínimo"
+        },
+        {
+          "cell": "M8",
+          "value": "Subyacente - Máximo"
+        },
+        {
+          "cell": "O8",
+          "value": "A_2005"
+        },
+        {
+          "cell": "P8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "Q8",
+          "value": null
+        },
+        {
+          "cell": "R8",
+          "value": "General - Mediana"
+        },
+        {
+          "cell": "S8",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "INFLATION_HISTORY_CHART",
+      "state": "visible",
+      "range": "A1:AJ1000",
+      "formulaCount": 18,
+      "formulaSamples": [
+        {
+          "cell": "B5",
+          "formula": "_xlfn.XLOOKUP(B4,_xlfn.ANCHORARRAY(INFLATION_HISTORY_DATA!$O$2),_xlfn.ANCHORARRAY(INFLATION_HISTORY_DATA!$AH$2),B4)"
+        },
+        {
+          "cell": "N5",
+          "formula": "\"Evolución del pronostico de inflación para el \"&LOWER(B5)"
+        },
+        {
+          "cell": "N6",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlfn.ANCHORARRAY(INFLATION_HISTORY_DATA!$P$8),1),1),IFERROR(\"Cobertura: \"&_xlfn.TAKE(_xlpm.x,1)&\" – \"&_xlfn.TAKE(_xlpm.x,-1),\"Cobertura: sin datos\"))"
+        },
+        {
+          "cell": "A7",
+          "formula": "IF(AND($E$4,$H$4),\"● General - Media\",\"\")"
+        },
+        {
+          "cell": "E7",
+          "formula": "IF(AND($E$4,$H$5),\"● General - Mediana\",\"\")"
+        },
+        {
+          "cell": "I7",
+          "formula": "IF(AND($E$4,$J$4),\"● General - Q1\",\"\")"
+        },
+        {
+          "cell": "M7",
+          "formula": "IF(AND($E$4,$J$5),\"● General - Q3\",\"\")"
+        },
+        {
+          "cell": "A8",
+          "formula": "IF(AND($E$4,$L$4),\"● General - Mínimo\",\"\")"
+        },
+        {
+          "cell": "E8",
+          "formula": "IF(AND($E$4,$L$5),\"● General - Máximo\",\"\")"
+        },
+        {
+          "cell": "I8",
+          "formula": "IF(AND($E$5,$H$4),\"● Subyacente - Media\",\"\")"
+        },
+        {
+          "cell": "M8",
+          "formula": "IF(AND($E$5,$H$5),\"● Subyacente - Mediana\",\"\")"
+        },
+        {
+          "cell": "N8",
+          "formula": "\"Error de estimación de inflación para el \"&LOWER(B5)"
+        },
+        {
+          "cell": "R8",
+          "formula": "_xlfn.ANCHORARRAY(INFLATION_HISTORY_DATA!AM8)"
+        },
+        {
+          "cell": "AH8",
+          "formula": "_xlfn.ANCHORARRAY(INFLATION_HISTORY_DATA!AJ8)"
+        },
+        {
+          "cell": "A9",
+          "formula": "IF(AND($E$5,$J$4),\"● Subyacente - Q1\",\"\")"
+        },
+        {
+          "cell": "E9",
+          "formula": "IF(AND($E$5,$J$5),\"● Subyacente - Q3\",\"\")"
+        },
+        {
+          "cell": "I9",
+          "formula": "IF(AND($E$5,$L$4),\"● Subyacente - Mínimo\",\"\")"
+        },
+        {
+          "cell": "M9",
+          "formula": "IF(AND($E$5,$L$5),\"● Subyacente - Máximo\",\"\")"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "INFLACIÓN | Evolución por periodo objetivo"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione un periodo y siga cómo han cambiado los pronósticos entre encuestas."
+        },
+        {
+          "cell": "A3",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "D3",
+          "value": "Variables"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2023"
+        },
+        {
+          "cell": "D4",
+          "value": "Inflación general"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "0"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "0"
+        },
+        {
+          "cell": "N4",
+          "value": "Marque variables y estadísticos; la fecha del eje X es survey_date."
+        },
+        {
+          "cell": "A5",
+          "value": "Descripción"
+        },
+        {
+          "cell": "B5",
+          "value": "Cierre anual 2023"
+        },
+        {
+          "cell": "D5",
+          "value": "Inflación subyacente"
+        },
+        {
+          "cell": "E5",
+          "value": "1"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "0"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "0"
+        },
+        {
+          "cell": "N5",
+          "value": "Evolución del pronostico de inflación para el cierre anual 2023"
+        },
+        {
+          "cell": "N6",
+          "value": "Cobertura: dic. 2020 – dic. 2023"
+        },
+        {
+          "cell": "A7",
+          "value": null
+        },
+        {
+          "cell": "E7",
+          "value": "● General - Mediana"
+        },
+        {
+          "cell": "I7",
+          "value": null
+        },
+        {
+          "cell": "M7",
+          "value": null
+        },
+        {
+          "cell": "A8",
+          "value": null
+        },
+        {
+          "cell": "E8",
+          "value": null
+        },
+        {
+          "cell": "I8",
+          "value": null
+        },
+        {
+          "cell": "M8",
+          "value": "● Subyacente - Mediana"
+        },
+        {
+          "cell": "N8",
+          "value": "Error de estimación de inflación para el cierre anual 2023"
+        },
+        {
+          "cell": "R8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "S8",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "FONDEO",
+      "state": "visible",
+      "range": "A1:AH332",
+      "formulaCount": 11,
+      "formulaSamples": [
+        {
+          "cell": "AH2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],ISNUMBER(_xlfn.XMATCH(tblDataRaw[indicator_id],{\"FONDEO\",\"CETE28\"}))+(tblDataRaw[source_table_id]=\"CR189\")))),,-1)"
+        },
+        {
+          "cell": "B4",
+          "formula": "FONDEO_CHART!B4"
+        },
+        {
+          "cell": "E4",
+          "formula": "$AH$2"
+        },
+        {
+          "cell": "B5",
+          "formula": "FONDEO_CHART!B5"
+        },
+        {
+          "cell": "E5",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[indicator_id],\"FONDEO\"))"
+        },
+        {
+          "cell": "B6",
+          "formula": "FONDEO_CHART!B6"
+        },
+        {
+          "cell": "E6",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[indicator_id],\"CETE28\"))"
+        },
+        {
+          "cell": "E7",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[source_table_id],\"CR189\"))"
+        },
+        {
+          "cell": "A10",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[indicator_id]=\"FONDEO\"),_xlfn._xlws.SORT(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),1,1))"
+        },
+        {
+          "cell": "L10",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[indicator_id]=\"CETE28\"),_xlfn._xlws.SORT(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),1,1))"
+        },
+        {
+          "cell": "W10",
+          "formula": "_xlfn.LET(_xlpm.d,TEXT($B$6,\"yyyy-mm-dd\"),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[source_table_id]=\"CR189\"),_xlfn._xlws.SORT(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),1,1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "TASAS | Visualizador transversal por encuesta"
+        },
+        {
+          "cell": "AH1",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A2",
+          "value": "Fondeo, CETES 28 días y Bono M10 para una misma survey_date."
+        },
+        {
+          "cell": "AH2",
+          "value": "46234"
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta controlada desde FONDEO_CHART"
+        },
+        {
+          "cell": "AH3",
+          "value": "46203"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "D4",
+          "value": "Última encuesta disponible"
+        },
+        {
+          "cell": "E4",
+          "value": "46234"
+        },
+        {
+          "cell": "AH4",
+          "value": "46173"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "D5",
+          "value": "Pronósticos Fondeo"
+        },
+        {
+          "cell": "E5",
+          "value": "9"
+        },
+        {
+          "cell": "AH5",
+          "value": "46142"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "D6",
+          "value": "Pronósticos CETES 28"
+        },
+        {
+          "cell": "E6",
+          "value": "3"
+        },
+        {
+          "cell": "AH6",
+          "value": "46112"
+        },
+        {
+          "cell": "D7",
+          "value": "Pronósticos Bono M10"
+        },
+        {
+          "cell": "E7",
+          "value": "3"
+        },
+        {
+          "cell": "AH7",
+          "value": "46081"
+        },
+        {
+          "cell": "A8",
+          "value": "Tasa de fondeo"
+        },
+        {
+          "cell": "L8",
+          "value": "CETES 28 días"
+        },
+        {
+          "cell": "W8",
+          "value": "Bono M10"
+        },
+        {
+          "cell": "AH8",
+          "value": "46053"
+        },
+        {
+          "cell": "A9",
+          "value": "Tipo de pronóstico"
+        },
+        {
+          "cell": "B9",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "C9",
+          "value": "Horizonte"
+        },
+        {
+          "cell": "D9",
+          "value": "Media"
+        },
+        {
+          "cell": "E9",
+          "value": "Mediana"
+        },
+        {
+          "cell": "F9",
+          "value": "Q1"
+        },
+        {
+          "cell": "G9",
+          "value": "Q3"
+        },
+        {
+          "cell": "H9",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "I9",
+          "value": "Máximo"
+        },
+        {
+          "cell": "J9",
+          "value": "Respuestas"
+        },
+        {
+          "cell": "L9",
+          "value": "Tipo de pronóstico"
+        },
+        {
+          "cell": "M9",
+          "value": "Periodo objetivo"
+        }
+      ]
+    },
+    {
+      "name": "FONDEO_CHART",
+      "state": "visible",
+      "range": "A1:AN1000",
+      "formulaCount": 25,
+      "formulaSamples": [
+        {
+          "cell": "N5",
+          "formula": "\"Pronósticos de tasas para la encuesta de \"&TEXT(B6,\"[$-es-MX]mmmm yyyy\")"
+        },
+        {
+          "cell": "B6",
+          "formula": "IF(B4=\"Última disponible\",FONDEO!$AH$2,B5)"
+        },
+        {
+          "cell": "A7",
+          "formula": "IF(AND($E$4,$H$4),\"● Fondeo - Media\",\"\")"
+        },
+        {
+          "cell": "F7",
+          "formula": "IF(AND($E$4,$H$5),\"● Fondeo - Mediana\",\"\")"
+        },
+        {
+          "cell": "K7",
+          "formula": "IF(AND($E$4,$J$4),\"● Fondeo - Q1\",\"\")"
+        },
+        {
+          "cell": "A8",
+          "formula": "IF(AND($E$4,$J$5),\"● Fondeo - Q3\",\"\")"
+        },
+        {
+          "cell": "F8",
+          "formula": "IF(AND($E$4,$L$4),\"● Fondeo - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K8",
+          "formula": "IF(AND($E$4,$L$5),\"● Fondeo - Máximo\",\"\")"
+        },
+        {
+          "cell": "A9",
+          "formula": "IF(AND($E$5,$H$4),\"● CETES 28 - Media\",\"\")"
+        },
+        {
+          "cell": "F9",
+          "formula": "IF(AND($E$5,$H$5),\"● CETES 28 - Mediana\",\"\")"
+        },
+        {
+          "cell": "K9",
+          "formula": "IF(AND($E$5,$J$4),\"● CETES 28 - Q1\",\"\")"
+        },
+        {
+          "cell": "R9",
+          "formula": "_xlfn.LET(_xlpm.sd,TEXT($B$6,\"yyyy-mm-dd\"),_xlpm.eff,IF(tblDataRaw[source_table_id]=\"CR189\",\"BONO_M10\",tblDataRaw[indicator_id]),_xlpm.per,tblDataRaw[period_id],_xlpm.td,IFERROR(IF(LEFT(_xlpm.per,2)=\"A_\",DATE(--RIGHT(_xlpm.per,4),12,31),IF(LEFT(_xlpm.per,2)=\"Q_\",EOMONTH(DATE(--MID(_xlpm.per,3,4),--RIGHT(_xlpm.per,1)*3,1),0),0)),0),_xlpm.keys,tblDataRaw[survey_date]&\"|\"&_xlpm.eff&\"|\"&TEXT(_xlpm.td,\"yyyymmdd\"),_xlpm.getDates,_xlfn.LAMBDA(_xlpm.id,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.td,(tblDataRaw[survey_date]=_xlpm.sd)*(_xlpm.eff=_xlpm.id)*(_xlpm.td>0))))),_xlpm.getVals,_xlfn.LAMBDA(_xlpm.id,_xlpm.d,_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[mean],NA()),_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[median],NA()),_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[q1],NA()),_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[q3],NA()),_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[min],NA()),_xlfn.XLOOKUP(_xlpm.sd&\"|\"&_xlpm.id&\"|\"&TEXT(_xlpm.d,\"yyyymmdd\"),_xlpm.keys,tblDataRaw[max],NA()))),_xlpm.fd,_xlpm.getDates(\"FONDEO\"),_xlpm.fv,_xlpm.getVals(\"FONDEO\",_xlpm.fd),_xlpm.cd,_xlpm.getDates(\"CETE28\"),_xlpm.cv,_xlpm.getVals(\"CETE28\",_xlpm.cd),_xlpm.bd,_xlpm.getDates(\"BONO_M10\"),_xlpm.bv,_xlpm.getVals(\"BONO_M10\",_xlpm.bd),_xlpm.n,ROWS(_xlpm.fd),_xlpm.seq,_xlfn.SEQUENCE(2*_xlpm.n-1),_xlpm.fsd0,_xlfn.MAP(_xlpm.seq,_xlfn.LAMBDA(_xlpm.i,IF(_xlpm.i=1,INDEX(_xlpm.fd,1),IF(ISEVEN(_xlpm.i),INDEX(_xlpm.fd,_xlpm.i/2+1)-1,INDEX(_xlpm.fd,(_xlpm.i+1)/2))))),_xlpm.fsv0,_xlfn.MAKEARRAY(2*_xlpm.n-1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,IF(_xlpm.r=1,INDEX(_xlpm.fv,1,_xlpm.c),IF(ISEVEN(_xlpm.r),INDEX(_xlpm.fv,_xlpm.r/2,_xlpm.c),INDEX(_xlpm.fv,(_xlpm.r+1)/2,_xlpm.c))))),_xlpm.amin,MIN(_xlfn.VSTACK(_xlpm.fd,_xlpm.cd,_xlpm.bd)),_xlpm.amax,MAX(_xlfn.VSTACK(_xlpm.fd,_xlpm.cd,_xlpm.bd)),_xlpm.keep,_xlfn.VSTACK(_xlpm.amin<MIN(_xlpm.fsd0),_xlfn.SEQUENCE(ROWS(_xlpm.fsd0),,1,0)>0,_xlpm.amax>MAX(_xlpm.fsd0)),_xlpm.fsd,_xlfn._xlws.FILTER(_xlfn.VSTACK(_xlpm.amin,_xlpm.fsd0,_xlpm.amax),_xlpm.keep),_xlpm.fsv,_xlfn._xlws.FILTER(_xlfn.VSTACK(_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,NA())),_xlpm.fsv0,_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,NA()))),_xlpm.keep),_xlpm.m,--_xlfn.HSTACK($H$4,$H$5,$J$4,$J$5,$L$4,$L$5),_xlpm.fmask,_xlpm.m*--$E$4,_xlpm.cmask,_xlpm.m*--$E$5,_xlpm.bmask,_xlpm.m*--$E$6,_xlpm.mr,MAX(ROWS(_xlpm.fsd),ROWS(_xlpm.cd),ROWS(_xlpm.bd)),_xlpm.fh,_xlfn.HSTACK(\"Fecha Fondeo\",\"Fondeo - Media\",\"Fondeo - Mediana\",\"Fondeo - Q1\",\"Fondeo - Q3\",\"Fondeo - Mínimo\",\"Fondeo - Máximo\"),_xlpm.ch,_xlfn.HSTACK(\"Fecha CETES\",\"CETES 28 - Media\",\"CETES 28 - Mediana\",\"CETES 28 - Q1\",\"CETES 28 - Q3\",\"CETES 28 - Mínimo\",\"CETES 28 - Máximo\"),_xlpm.bh,_xlfn.HSTACK(\"Fecha Bono\",\"Bono M10 - Media\",\"Bono M10 - Mediana\",\"Bono M10 - Q1\",\"Bono M10 - Q3\",\"Bono M10 - Mínimo\",\"Bono M10 - Máximo\"),_xlpm.fb,_xlfn.HSTACK(_xlfn.EXPAND(_xlpm.fsd,_xlpm.mr,1,NA()),_xlfn.EXPAND(IF(_xlpm.fmask*ISNUMBER(_xlpm.fsv),_xlpm.fsv,NA()),_xlpm.mr,6,NA())),_xlpm.cb,_xlfn.HSTACK(_xlfn.EXPAND(_xlpm.cd,_xlpm.mr,1,NA()),_xlfn.EXPAND(IF(_xlpm.cmask*ISNUMBER(_xlpm.cv),_xlpm.cv,NA()),_xlpm.mr,6,NA())),_xlpm.bb,_xlfn.HSTACK(_xlfn.EXPAND(_xlpm.bd,_xlpm.mr,1,NA()),_xlfn.EXPAND(IF(_xlpm.bmask*ISNUMBER(_xlpm.bv),_xlpm.bv,NA()),_xlpm.mr,6,NA())),_xlfn.VSTACK(_xlfn.HSTACK(_xlpm.fh,_xlpm.ch,_xlpm.bh),_xlfn.HSTACK(_xlpm.fb,_xlpm.cb,_xlpm.bb)))"
+        },
+        {
+          "cell": "A10",
+          "formula": "IF(AND($E$5,$J$5),\"● CETES 28 - Q3\",\"\")"
+        },
+        {
+          "cell": "F10",
+          "formula": "IF(AND($E$5,$L$4),\"● CETES 28 - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K10",
+          "formula": "IF(AND($E$5,$L$5),\"● CETES 28 - Máximo\",\"\")"
+        },
+        {
+          "cell": "AM10",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.VSTACK(R10:R100,Y10:Y100,AF10:AF100),_xlpm.z,IFERROR(_xlpm.x,0),MIN(_xlfn._xlws.FILTER(_xlpm.z,_xlpm.z>1000)))"
+        },
+        {
+          "cell": "AN10",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.TOCOL(_xlfn.HSTACK(S10:X100,Z10:AE100,AG10:AL100),3),MIN(_xlfn._xlws.FILTER(_xlpm.x,ISNUMBER(_xlpm.x))))"
+        },
+        {
+          "cell": "A11",
+          "formula": "IF(AND($E$6,$H$4),\"● Bono M10 - Media\",\"\")"
+        },
+        {
+          "cell": "F11",
+          "formula": "IF(AND($E$6,$H$5),\"● Bono M10 - Mediana\",\"\")"
+        },
+        {
+          "cell": "K11",
+          "formula": "IF(AND($E$6,$J$4),\"● Bono M10 - Q1\",\"\")"
+        },
+        {
+          "cell": "AM11",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.VSTACK(R10:R100,Y10:Y100,AF10:AF100),_xlpm.z,IFERROR(_xlpm.x,0),MAX(_xlfn._xlws.FILTER(_xlpm.z,_xlpm.z>1000)))"
+        },
+        {
+          "cell": "AN11",
+          "formula": "AN10"
+        },
+        {
+          "cell": "A12",
+          "formula": "IF(AND($E$6,$J$5),\"● Bono M10 - Q3\",\"\")"
+        },
+        {
+          "cell": "F12",
+          "formula": "IF(AND($E$6,$L$4),\"● Bono M10 - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K12",
+          "formula": "IF(AND($E$6,$L$5),\"● Bono M10 - Máximo\",\"\")"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "TASAS | Gráfica interactiva"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione encuesta, instrumentos y estadísticos; el detalle permanece en FONDEO."
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta"
+        },
+        {
+          "cell": "D3",
+          "value": "Instrumentos"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "D4",
+          "value": "Fondeo"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "0"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "0"
+        },
+        {
+          "cell": "N4",
+          "value": "Marque al menos un instrumento y un estadístico."
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "D5",
+          "value": "CETES 28 días"
+        },
+        {
+          "cell": "E5",
+          "value": "1"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "0"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "0"
+        },
+        {
+          "cell": "N5",
+          "value": "Pronósticos de tasas para la encuesta de julio 2026"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "D6",
+          "value": "Bono M10"
+        },
+        {
+          "cell": "E6",
+          "value": "1"
+        },
+        {
+          "cell": "A7",
+          "value": null
+        },
+        {
+          "cell": "F7",
+          "value": "● Fondeo - Mediana"
+        },
+        {
+          "cell": "K7",
+          "value": null
+        },
+        {
+          "cell": "A8",
+          "value": null
+        },
+        {
+          "cell": "F8",
+          "value": null
+        },
+        {
+          "cell": "K8",
+          "value": null
+        },
+        {
+          "cell": "A9",
+          "value": null
+        },
+        {
+          "cell": "F9",
+          "value": "● CETES 28 - Mediana"
+        }
+      ]
+    },
+    {
+      "name": "FONDEO_HISTORY_DATA",
+      "state": "visible",
+      "range": "A1:BN1000",
+      "formulaCount": 7,
+      "formulaSamples": [
+        {
+          "cell": "AO2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[period_id],((ISNUMBER(_xlfn.XMATCH(tblDataRaw[indicator_id],{\"FONDEO\",\"CETE28\"})))+(tblDataRaw[source_table_id]=\"CR189\"))*(tblDataRaw[period_id]<>\"\"))))"
+        },
+        {
+          "cell": "AP2",
+          "formula": "_xlfn.MAP(_xlfn.ANCHORARRAY(AO2),_xlfn.LAMBDA(_xlpm.p,IF(LEFT(_xlpm.p,2)=\"A_\",\"Cierre anual \"&RIGHT(_xlpm.p,4),IF(LEFT(_xlpm.p,2)=\"Q_\",MID(_xlpm.p,7,1)&\"T\"&MID(_xlpm.p,3,4),_xlpm.p))))"
+        },
+        {
+          "cell": "B4",
+          "formula": "FONDEO_HISTORY_CHART!B4"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.yr,RIGHT(_xlpm.p,4),_xlpm.isAnnual,LEFT(_xlpm.p,2)=\"A_\",_xlpm.eff,IF(tblDataRaw[source_table_id]=\"CR189\",\"BONO_M10\",tblDataRaw[indicator_id]),_xlpm.per,tblDataRaw[period_id],_xlpm.fMatch,IF(_xlpm.isAnnual,(_xlpm.eff=\"FONDEO\")*(LEFT(_xlpm.per,6)=\"Q_\"&_xlpm.yr),(_xlpm.eff=\"FONDEO\")*(_xlpm.per=_xlpm.p)),_xlpm.oMatch,(_xlpm.eff<>\"FONDEO\")*(_xlpm.per=_xlpm.p)*ISNUMBER(_xlfn.XMATCH(_xlpm.eff,{\"CETE28\",\"BONO_M10\"})),_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],_xlpm.fMatch+_xlpm.oMatch)))),_xlpm.dt,TEXT(_xlpm.d,\"yyyy-mm-dd\"),_xlpm.keys,tblDataRaw[survey_date]&\"|\"&_xlpm.eff&\"|\"&_xlpm.per,_xlpm.fper,_xlfn.MAP(_xlpm.dt,_xlfn.LAMBDA(_xlpm.x,IF(_xlpm.isAnnual,IFERROR(_xlfn.TAKE(_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.per,(tblDataRaw[survey_date]=_xlpm.x)*(_xlpm.eff=\"FONDEO\")*(LEFT(_xlpm.per,6)=\"Q_\"&_xlpm.yr)))),-1),\"\"),_xlpm.p))),_xlpm.mk,_xlfn.LAMBDA(_xlpm.id,_xlpm.periods,_xlpm.field,_xlfn.XLOOKUP(_xlpm.dt&\"|\"&_xlpm.id&\"|\"&_xlpm.periods,_xlpm.keys,_xlpm.field,NA())),_xlpm.hdr,_xlfn.HSTACK(\"Fecha encuesta\",\"Fondeo - Media\",\"Fondeo - Mediana\",\"Fondeo - Q1\",\"Fondeo - Q3\",\"Fondeo - Mínimo\",\"Fondeo - Máximo\",\"CETES 28 - Media\",\"CETES 28 - Mediana\",\"CETES 28 - Q1\",\"CETES 28 - Q3\",\"CETES 28 - Mínimo\",\"CETES 28 - Máximo\",\"Bono M10 - Media\",\"Bono M10 - Mediana\",\"Bono M10 - Q1\",\"Bono M10 - Q3\",\"Bono M10 - Mínimo\",\"Bono M10 - Máximo\"),_xlpm.vals,_xlfn.HSTACK(_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[mean]),_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[median]),_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[q1]),_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[q3]),_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[min]),_xlpm.mk(\"FONDEO\",_xlpm.fper,tblDataRaw[max]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[mean]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[median]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[q1]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[q3]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[min]),_xlpm.mk(\"CETE28\",_xlpm.p,tblDataRaw[max]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[mean]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[median]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[q1]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[q3]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[min]),_xlpm.mk(\"BONO_M10\",_xlpm.p,tblDataRaw[max])),_xlfn.VSTACK(_xlpm.hdr,_xlfn.HSTACK(_xlpm.d,_xlpm.vals)))"
+        },
+        {
+          "cell": "U8",
+          "formula": "_xlfn.LET(_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.hdr,_xlfn.DROP(_xlfn.TAKE(_xlpm.raw,1),,1),_xlpm.vals,_xlfn.DROP(_xlpm.raw,1,1),_xlpm.m,--_xlfn.HSTACK(FONDEO_HISTORY_CHART!$H$4,FONDEO_HISTORY_CHART!$H$5,FONDEO_HISTORY_CHART!$J$4,FONDEO_HISTORY_CHART!$J$5,FONDEO_HISTORY_CHART!$L$4,FONDEO_HISTORY_CHART!$L$5),_xlpm.mask,_xlfn.HSTACK(_xlpm.m*--FONDEO_HISTORY_CHART!$E$4,_xlpm.m*--FONDEO_HISTORY_CHART!$E$5,_xlpm.m*--FONDEO_HISTORY_CHART!$E$6),_xlpm.active,IF(_xlpm.mask*ISNUMBER(_xlpm.vals),_xlpm.vals,NA()),_xlpm.allRows,_xlfn.SEQUENCE(ROWS(_xlpm.d),,1,0)>0,_xlpm.keep,IF(SUM(_xlpm.mask)=0,_xlpm.allRows,_xlfn.BYROW(_xlpm.active,_xlfn.LAMBDA(_xlpm.r,SUM(--ISNUMBER(_xlpm.r))>0))),_xlpm.fd,_xlfn._xlws.FILTER(_xlpm.d,_xlpm.keep),_xlpm.fv,_xlfn._xlws.FILTER(_xlpm.active,_xlpm.keep),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",IF(_xlpm.mask,_xlpm.hdr,\"\")),_xlfn.HSTACK(_xlpm.fd,_xlpm.fv)))"
+        },
+        {
+          "cell": "AQ8",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.ANCHORARRAY($U$8),_xlpm.p,$B$4,_xlpm.isAnnual,LEFT(_xlpm.p,2)=\"A_\",_xlpm.yr,RIGHT(_xlpm.p,4),_xlpm.fKey,\"FONDEO|\"&IF(_xlpm.isAnnual,\"Q_\"&_xlpm.yr&\"Q4\",_xlpm.p),_xlpm.cKey,\"CETE28|\"&_xlpm.p,_xlpm.bKey,\"BONO_M10|\"&_xlpm.p,_xlpm.fa,_xlfn.XLOOKUP(_xlpm.fKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.ca,_xlfn.XLOOKUP(_xlpm.cKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.ba,_xlfn.XLOOKUP(_xlpm.bKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.m,--_xlfn.HSTACK(FONDEO_HISTORY_CHART!$H$4,FONDEO_HISTORY_CHART!$H$5,FONDEO_HISTORY_CHART!$J$4,FONDEO_HISTORY_CHART!$J$5,FONDEO_HISTORY_CHART!$L$4,FONDEO_HISTORY_CHART!$L$5),_xlpm.mask,_xlfn.HSTACK(_xlpm.m*--FONDEO_HISTORY_CHART!$E$4,_xlpm.m*--FONDEO_HISTORY_CHART!$E$5,_xlpm.m*--FONDEO_HISTORY_CHART!$E$6),_xlpm.actuals,_xlfn.HSTACK(_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlpm.fa)),_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlpm.ca)),_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlpm.ba))),_xlpm.actualRow,_xlfn.HSTACK(\"Realizado\",IF(_xlpm.mask*ISNUMBER(_xlpm.actuals),_xlpm.actuals,NA())),_xlpm.hasActual,SUM(--ISNUMBER(_xlpm.actuals)*_xlpm.mask)>0,IF(_xlpm.hasActual,_xlfn.VSTACK(_xlpm.x,_xlpm.actualRow),_xlpm.x))"
+        },
+        {
+          "cell": "BK8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.fm,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,3),1),_xlpm.cm,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,9),1),_xlpm.bm,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,15),1),_xlpm.isAnnual,LEFT(_xlpm.p,2)=\"A_\",_xlpm.yr,RIGHT(_xlpm.p,4),_xlpm.fKey,\"FONDEO|\"&IF(_xlpm.isAnnual,\"Q_\"&_xlpm.yr&\"Q4\",_xlpm.p),_xlpm.cKey,\"CETE28|\"&_xlpm.p,_xlpm.bKey,\"BONO_M10|\"&_xlpm.p,_xlpm.fa,_xlfn.XLOOKUP(_xlpm.fKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.ca,_xlfn.XLOOKUP(_xlpm.cKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.ba,_xlfn.XLOOKUP(_xlpm.bKey,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.fe,IF(FONDEO_HISTORY_CHART!$E$4*ISNUMBER(_xlpm.fm)*ISNUMBER(_xlpm.fa),_xlpm.fm-_xlpm.fa,NA()),_xlpm.ce,IF(FONDEO_HISTORY_CHART!$E$5*ISNUMBER(_xlpm.cm)*ISNUMBER(_xlpm.ca),_xlpm.cm-_xlpm.ca,NA()),_xlpm.be,IF(FONDEO_HISTORY_CHART!$E$6*ISNUMBER(_xlpm.bm)*ISNUMBER(_xlpm.ba),_xlpm.bm-_xlpm.ba,NA()),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",\"Fondeo - Error\",\"CETES 28 - Error\",\"Bono M10 - Error\"),_xlfn.HSTACK(_xlpm.d,_xlpm.fe,_xlpm.ce,_xlpm.be)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "TASAS | Evolución histórica por periodo objetivo"
+        },
+        {
+          "cell": "AO1",
+          "value": "Periodos disponibles"
+        },
+        {
+          "cell": "AP1",
+          "value": "Etiquetas de periodo"
+        },
+        {
+          "cell": "A2",
+          "value": "Fuente de datos del visualizador histórico; selección desde FONDEO_HISTORY_CHART."
+        },
+        {
+          "cell": "AO2",
+          "value": "A_1999"
+        },
+        {
+          "cell": "AP2",
+          "value": "Cierre anual 1999"
+        },
+        {
+          "cell": "AO3",
+          "value": "A_2000"
+        },
+        {
+          "cell": "AP3",
+          "value": "Cierre anual 2000"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo seleccionado"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2022"
+        },
+        {
+          "cell": "AO4",
+          "value": "A_2001"
+        },
+        {
+          "cell": "AP4",
+          "value": "Cierre anual 2001"
+        },
+        {
+          "cell": "AO5",
+          "value": "A_2002"
+        },
+        {
+          "cell": "AP5",
+          "value": "Cierre anual 2002"
+        },
+        {
+          "cell": "A6",
+          "value": "Matriz completa"
+        },
+        {
+          "cell": "U6",
+          "value": "Matriz activa para gráfica"
+        },
+        {
+          "cell": "AO6",
+          "value": "A_2003"
+        },
+        {
+          "cell": "AP6",
+          "value": "Cierre anual 2003"
+        },
+        {
+          "cell": "AQ6",
+          "value": "Matriz activa con realizado"
+        },
+        {
+          "cell": "BK6",
+          "value": "Errores de estimación"
+        },
+        {
+          "cell": "AO7",
+          "value": "A_2004"
+        },
+        {
+          "cell": "AP7",
+          "value": "Cierre anual 2004"
+        },
+        {
+          "cell": "A8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "B8",
+          "value": "Fondeo - Media"
+        },
+        {
+          "cell": "C8",
+          "value": "Fondeo - Mediana"
+        },
+        {
+          "cell": "D8",
+          "value": "Fondeo - Q1"
+        },
+        {
+          "cell": "E8",
+          "value": "Fondeo - Q3"
+        },
+        {
+          "cell": "F8",
+          "value": "Fondeo - Mínimo"
+        },
+        {
+          "cell": "G8",
+          "value": "Fondeo - Máximo"
+        },
+        {
+          "cell": "H8",
+          "value": "CETES 28 - Media"
+        },
+        {
+          "cell": "I8",
+          "value": "CETES 28 - Mediana"
+        },
+        {
+          "cell": "J8",
+          "value": "CETES 28 - Q1"
+        },
+        {
+          "cell": "K8",
+          "value": "CETES 28 - Q3"
+        },
+        {
+          "cell": "L8",
+          "value": "CETES 28 - Mínimo"
+        },
+        {
+          "cell": "M8",
+          "value": "CETES 28 - Máximo"
+        },
+        {
+          "cell": "N8",
+          "value": "Bono M10 - Media"
+        },
+        {
+          "cell": "O8",
+          "value": "Bono M10 - Mediana"
+        },
+        {
+          "cell": "P8",
+          "value": "Bono M10 - Q1"
+        },
+        {
+          "cell": "Q8",
+          "value": "Bono M10 - Q3"
+        },
+        {
+          "cell": "R8",
+          "value": "Bono M10 - Mínimo"
+        }
+      ]
+    },
+    {
+      "name": "FONDEO_HISTORY_CHART",
+      "state": "visible",
+      "range": "A1:AO73",
+      "formulaCount": 24,
+      "formulaSamples": [
+        {
+          "cell": "B5",
+          "formula": "IF(LEFT(B4,2)=\"Q_\",RIGHT(B4,1)&\"T \"&MID(B4,3,4),IF(LEFT(B4,2)=\"A_\",\"Cierre \"&RIGHT(B4,4),B4))"
+        },
+        {
+          "cell": "N5",
+          "formula": "\"Evolución de tasas para \"&LOWER(B5)"
+        },
+        {
+          "cell": "N6",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlfn.ANCHORARRAY(FONDEO_HISTORY_DATA!$U$8),1),1),IFERROR(\"Cobertura: \"&TEXT(_xlfn.TAKE(_xlpm.x,1),\"[$-es-MX]mmm yyyy\")&\" – \"&TEXT(_xlfn.TAKE(_xlpm.x,-1),\"[$-es-MX]mmm yyyy\"),\"Cobertura: sin datos\"))"
+        },
+        {
+          "cell": "A7",
+          "formula": "IF(AND($E$4,$H$4),\"● Fondeo - Media\",\"\")"
+        },
+        {
+          "cell": "F7",
+          "formula": "IF(AND($E$4,$H$5),\"● Fondeo - Mediana\",\"\")"
+        },
+        {
+          "cell": "K7",
+          "formula": "IF(AND($E$4,$J$4),\"● Fondeo - Q1\",\"\")"
+        },
+        {
+          "cell": "A8",
+          "formula": "IF(AND($E$4,$J$5),\"● Fondeo - Q3\",\"\")"
+        },
+        {
+          "cell": "F8",
+          "formula": "IF(AND($E$4,$L$4),\"● Fondeo - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K8",
+          "formula": "IF(AND($E$4,$L$5),\"● Fondeo - Máximo\",\"\")"
+        },
+        {
+          "cell": "N8",
+          "formula": "\"Error de estimación de tasas para \"&LOWER(B5)"
+        },
+        {
+          "cell": "R8",
+          "formula": "_xlfn.ANCHORARRAY(FONDEO_HISTORY_DATA!AQ8)"
+        },
+        {
+          "cell": "AL8",
+          "formula": "_xlfn.ANCHORARRAY(FONDEO_HISTORY_DATA!BK8)"
+        },
+        {
+          "cell": "A9",
+          "formula": "IF(AND($E$5,$H$4),\"● CETES 28 - Media\",\"\")"
+        },
+        {
+          "cell": "F9",
+          "formula": "IF(AND($E$5,$H$5),\"● CETES 28 - Mediana\",\"\")"
+        },
+        {
+          "cell": "K9",
+          "formula": "IF(AND($E$5,$J$4),\"● CETES 28 - Q1\",\"\")"
+        },
+        {
+          "cell": "A10",
+          "formula": "IF(AND($E$5,$J$5),\"● CETES 28 - Q3\",\"\")"
+        },
+        {
+          "cell": "F10",
+          "formula": "IF(AND($E$5,$L$4),\"● CETES 28 - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K10",
+          "formula": "IF(AND($E$5,$L$5),\"● CETES 28 - Máximo\",\"\")"
+        },
+        {
+          "cell": "A11",
+          "formula": "IF(AND($E$6,$H$4),\"● Bono M10 - Media\",\"\")"
+        },
+        {
+          "cell": "F11",
+          "formula": "IF(AND($E$6,$H$5),\"● Bono M10 - Mediana\",\"\")"
+        },
+        {
+          "cell": "K11",
+          "formula": "IF(AND($E$6,$J$4),\"● Bono M10 - Q1\",\"\")"
+        },
+        {
+          "cell": "A12",
+          "formula": "IF(AND($E$6,$J$5),\"● Bono M10 - Q3\",\"\")"
+        },
+        {
+          "cell": "F12",
+          "formula": "IF(AND($E$6,$L$4),\"● Bono M10 - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K12",
+          "formula": "IF(AND($E$6,$L$5),\"● Bono M10 - Máximo\",\"\")"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "TASAS | Evolución por periodo objetivo"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione un periodo y siga la evolución de Fondeo, CETES 28 y Bono M10."
+        },
+        {
+          "cell": "A3",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "D3",
+          "value": "Instrumentos"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2022"
+        },
+        {
+          "cell": "D4",
+          "value": "Fondeo"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "0"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "0"
+        },
+        {
+          "cell": "N4",
+          "value": "Para cierres anuales, Fondeo utiliza el pronóstico y realizado del 4T del mismo año."
+        },
+        {
+          "cell": "A5",
+          "value": "Trimestre / año"
+        },
+        {
+          "cell": "B5",
+          "value": "Cierre 2022"
+        },
+        {
+          "cell": "D5",
+          "value": "CETES 28 días"
+        },
+        {
+          "cell": "E5",
+          "value": "1"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "0"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "0"
+        },
+        {
+          "cell": "N5",
+          "value": "Evolución de tasas para cierre 2022"
+        },
+        {
+          "cell": "D6",
+          "value": "Bono M10"
+        },
+        {
+          "cell": "E6",
+          "value": "1"
+        },
+        {
+          "cell": "N6",
+          "value": "Cobertura: dic. 2019 – dic. 2022"
+        },
+        {
+          "cell": "A7",
+          "value": null
+        },
+        {
+          "cell": "F7",
+          "value": "● Fondeo - Mediana"
+        },
+        {
+          "cell": "K7",
+          "value": null
+        },
+        {
+          "cell": "A8",
+          "value": null
+        },
+        {
+          "cell": "F8",
+          "value": null
+        },
+        {
+          "cell": "K8",
+          "value": null
+        },
+        {
+          "cell": "N8",
+          "value": "Error de estimación de tasas para cierre 2022"
+        },
+        {
+          "cell": "R8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "S8",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "GDP",
+      "state": "visible",
+      "range": "A1:X332",
+      "formulaCount": 7,
+      "formulaSamples": [
+        {
+          "cell": "X2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],tblDataRaw[indicator_id]=\"GDP_REAL\"))),,-1)"
+        },
+        {
+          "cell": "B4",
+          "formula": "GDP_CHART!B4"
+        },
+        {
+          "cell": "E4",
+          "formula": "$X$2"
+        },
+        {
+          "cell": "B5",
+          "formula": "GDP_CHART!B5"
+        },
+        {
+          "cell": "E5",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),COUNTIFS(tblDataRaw[survey_date],_xlpm.d,tblDataRaw[indicator_id],\"GDP_REAL\"))"
+        },
+        {
+          "cell": "B6",
+          "formula": "GDP_CHART!B6"
+        },
+        {
+          "cell": "A10",
+          "formula": "_xlfn.LET(_xlpm.d,IF(ISNUMBER($B$6),TEXT($B$6,\"yyyy-mm-dd\"),$B$6),_xlpm.f,(tblDataRaw[survey_date]=_xlpm.d)*(tblDataRaw[indicator_id]=\"GDP_REAL\"),_xlfn.SORTBY(_xlfn._xlws.FILTER(CHOOSE({1,2,3,4,5,6,7,8,9,10},tblDataRaw[forecast_type],tblDataRaw[target_period],IF(tblDataRaw[horizon_label]=\"\",\"\",tblDataRaw[horizon_label]),tblDataRaw[mean],tblDataRaw[median],tblDataRaw[q1],tblDataRaw[q3],tblDataRaw[min],tblDataRaw[max],tblDataRaw[n_responses]),_xlpm.f,\"Sin datos\"),_xlfn._xlws.FILTER(tblDataRaw[chart_date],_xlpm.f),1))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "PIB REAL | Visualizador transversal por encuesta"
+        },
+        {
+          "cell": "X1",
+          "value": "Fechas disponibles"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione la encuesta; se muestran todos los pronósticos de crecimiento del PIB real disponibles."
+        },
+        {
+          "cell": "X2",
+          "value": "46234"
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta controlada desde GDP_CHART"
+        },
+        {
+          "cell": "X3",
+          "value": "46203"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "D4",
+          "value": "Última encuesta disponible"
+        },
+        {
+          "cell": "E4",
+          "value": "46234"
+        },
+        {
+          "cell": "X4",
+          "value": "46173"
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "D5",
+          "value": "Pronósticos disponibles"
+        },
+        {
+          "cell": "E5",
+          "value": "11"
+        },
+        {
+          "cell": "X5",
+          "value": "46142"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "X6",
+          "value": "46112"
+        },
+        {
+          "cell": "X7",
+          "value": "46081"
+        },
+        {
+          "cell": "A8",
+          "value": "Crecimiento PIB real"
+        },
+        {
+          "cell": "X8",
+          "value": "46053"
+        },
+        {
+          "cell": "A9",
+          "value": "Tipo de pronóstico"
+        },
+        {
+          "cell": "B9",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "C9",
+          "value": "Horizonte"
+        },
+        {
+          "cell": "D9",
+          "value": "Media"
+        },
+        {
+          "cell": "E9",
+          "value": "Mediana"
+        },
+        {
+          "cell": "F9",
+          "value": "Q1"
+        },
+        {
+          "cell": "G9",
+          "value": "Q3"
+        },
+        {
+          "cell": "H9",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "I9",
+          "value": "Máximo"
+        },
+        {
+          "cell": "J9",
+          "value": "Respuestas"
+        },
+        {
+          "cell": "X9",
+          "value": "46022"
+        },
+        {
+          "cell": "A10",
+          "value": "Cierre trimestral"
+        },
+        {
+          "cell": "B10",
+          "value": "2T26"
+        },
+        {
+          "cell": "C10",
+          "value": "T--1"
+        },
+        {
+          "cell": "D10",
+          "value": "1.44"
+        },
+        {
+          "cell": "E10",
+          "value": "1.4"
+        },
+        {
+          "cell": "F10",
+          "value": "1.1000000000000001"
+        },
+        {
+          "cell": "G10",
+          "value": "1.82"
+        }
+      ]
+    },
+    {
+      "name": "GDP_CHART",
+      "state": "visible",
+      "range": "A1:AF20",
+      "formulaCount": 11,
+      "formulaSamples": [
+        {
+          "cell": "N5",
+          "formula": "\"Pronósticos trimestrales de PIB real para la encuesta de \"&TEXT(B6,\"[$-es-MX]mmmm yyyy\")"
+        },
+        {
+          "cell": "B6",
+          "formula": "IF(B4=\"Última disponible\",GDP!$X$2,B5)"
+        },
+        {
+          "cell": "N6",
+          "formula": "\"Pronósticos anuales de PIB real para la encuesta de \"&TEXT(B6,\"[$-es-MX]mmmm yyyy\")"
+        },
+        {
+          "cell": "A7",
+          "formula": "IF($H$4,\"● PIB real - Media\",\"\")"
+        },
+        {
+          "cell": "F7",
+          "formula": "IF($H$5,\"● PIB real - Mediana\",\"\")"
+        },
+        {
+          "cell": "K7",
+          "formula": "IF($J$4,\"● PIB real - Q1\",\"\")"
+        },
+        {
+          "cell": "A8",
+          "formula": "IF($J$5,\"● PIB real - Q3\",\"\")"
+        },
+        {
+          "cell": "F8",
+          "formula": "IF($L$4,\"● PIB real - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K8",
+          "formula": "IF($L$5,\"● PIB real - Máximo\",\"\")"
+        },
+        {
+          "cell": "R9",
+          "formula": "_xlfn.LET(_xlpm.tipo,_xlfn._xlws.FILTER(GDP!A10:A200,GDP!A10:A200<>\"\"),_xlpm.periodo,_xlfn._xlws.FILTER(GDP!B10:B200,GDP!A10:A200<>\"\"),_xlpm.datos,_xlfn._xlws.FILTER(GDP!D10:I200,GDP!A10:A200<>\"\"),_xlpm.f,_xlpm.tipo=\"Cierre trimestral\",_xlpm.p,_xlfn._xlws.FILTER(_xlpm.periodo,_xlpm.f),_xlpm.vals,_xlfn._xlws.FILTER(_xlpm.datos,_xlpm.f),_xlpm.fechas,_xlfn.MAP(_xlpm.p,_xlfn.LAMBDA(_xlpm.tp,EOMONTH(DATE(2000+--RIGHT(_xlpm.tp,2),--LEFT(_xlpm.tp,1)*3,1),0))),_xlpm.m,--_xlfn.HSTACK($H$4,$H$5,$J$4,$J$5,$L$4,$L$5),_xlpm.hdr,_xlfn.HSTACK(\"PIB real - Media\",\"PIB real - Mediana\",\"PIB real - Q1\",\"PIB real - Q3\",\"PIB real - Mínimo\",\"PIB real - Máximo\"),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha objetivo\",IF(_xlpm.m,_xlpm.hdr,\"\")),_xlfn.HSTACK(_xlpm.fechas,IF(_xlpm.m*ISNUMBER(_xlpm.vals),_xlpm.vals,NA()))))"
+        },
+        {
+          "cell": "Z9",
+          "formula": "_xlfn.LET(_xlpm.tipo,_xlfn._xlws.FILTER(GDP!A10:A200,GDP!A10:A200<>\"\"),_xlpm.periodo,_xlfn._xlws.FILTER(GDP!B10:B200,GDP!A10:A200<>\"\"),_xlpm.datos,_xlfn._xlws.FILTER(GDP!D10:I200,GDP!A10:A200<>\"\"),_xlpm.f,_xlpm.tipo=\"Cierre anual\",_xlpm.p,_xlfn._xlws.FILTER(_xlpm.periodo,_xlpm.f),_xlpm.vals,_xlfn._xlws.FILTER(_xlpm.datos,_xlpm.f),_xlpm.fechas,_xlfn.MAP(_xlpm.p,_xlfn.LAMBDA(_xlpm.tp,DATE(--_xlpm.tp,12,31))),_xlpm.m,--_xlfn.HSTACK($H$4,$H$5,$J$4,$J$5,$L$4,$L$5),_xlpm.hdr,_xlfn.HSTACK(\"PIB real - Media\",\"PIB real - Mediana\",\"PIB real - Q1\",\"PIB real - Q3\",\"PIB real - Mínimo\",\"PIB real - Máximo\"),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha objetivo\",IF(_xlpm.m,_xlpm.hdr,\"\")),_xlfn.HSTACK(_xlpm.fechas,IF(_xlpm.m*ISNUMBER(_xlpm.vals),_xlpm.vals,NA()))))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "PIB REAL | Gráfica interactiva"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione encuesta y estadísticos; el detalle permanece en la hoja GDP."
+        },
+        {
+          "cell": "A3",
+          "value": "Encuesta"
+        },
+        {
+          "cell": "D3",
+          "value": "Variables"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Modo"
+        },
+        {
+          "cell": "B4",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "D4",
+          "value": "PIB real"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "1"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "1"
+        },
+        {
+          "cell": "N4",
+          "value": "Los crecimientos trimestrales y anuales se muestran en gráficas separadas; comparten los mismos estadísticos."
+        },
+        {
+          "cell": "A5",
+          "value": "Fecha histórica"
+        },
+        {
+          "cell": "B5",
+          "value": "46234"
+        },
+        {
+          "cell": "E5",
+          "value": "0"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "1"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "1"
+        },
+        {
+          "cell": "N5",
+          "value": "Pronósticos trimestrales de PIB real para la encuesta de julio 2026"
+        },
+        {
+          "cell": "A6",
+          "value": "Encuesta mostrada"
+        },
+        {
+          "cell": "B6",
+          "value": "46234"
+        },
+        {
+          "cell": "N6",
+          "value": "Pronósticos anuales de PIB real para la encuesta de julio 2026"
+        },
+        {
+          "cell": "A7",
+          "value": null
+        },
+        {
+          "cell": "F7",
+          "value": "● PIB real - Mediana"
+        },
+        {
+          "cell": "K7",
+          "value": "● PIB real - Q1"
+        },
+        {
+          "cell": "A8",
+          "value": "● PIB real - Q3"
+        },
+        {
+          "cell": "F8",
+          "value": "● PIB real - Mínimo"
+        },
+        {
+          "cell": "K8",
+          "value": "● PIB real - Máximo"
+        },
+        {
+          "cell": "R9",
+          "value": "Fecha objetivo"
+        },
+        {
+          "cell": "S9",
+          "value": null
+        },
+        {
+          "cell": "T9",
+          "value": "PIB real - Mediana"
+        },
+        {
+          "cell": "U9",
+          "value": "PIB real - Q1"
+        }
+      ]
+    },
+    {
+      "name": "GDP_HISTORY_DATA",
+      "state": "visible",
+      "range": "A1:AR1000",
+      "formulaCount": 7,
+      "formulaSamples": [
+        {
+          "cell": "O2",
+          "formula": "_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(tblDataRaw[period_id],(tblDataRaw[indicator_id]=\"GDP_REAL\")*(tblDataRaw[period_id]<>\"\"))))"
+        },
+        {
+          "cell": "AH2",
+          "formula": "_xlfn.MAP(_xlfn.ANCHORARRAY(O2),_xlfn.LAMBDA(_xlpm.p,IF(LEFT(_xlpm.p,2)=\"A_\",\"Cierre anual \"&RIGHT(_xlpm.p,4),IF(LEFT(_xlpm.p,2)=\"Q_\",MID(_xlpm.p,8,1)&\"T\"&MID(_xlpm.p,3,4),IF(_xlpm.p=\"LT_10Y\",\"Promedio próximos 10 años\",_xlpm.p)))))"
+        },
+        {
+          "cell": "B4",
+          "formula": "GDP_HISTORY_CHART!B4"
+        },
+        {
+          "cell": "A8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.d,_xlfn._xlws.SORT(_xlfn.UNIQUE(DATEVALUE(_xlfn._xlws.FILTER(tblDataRaw[survey_date],(tblDataRaw[indicator_id]=\"GDP_REAL\")*(tblDataRaw[period_id]=_xlpm.p))))),_xlpm.dt,TEXT(_xlpm.d,\"yyyy-mm-dd\"),_xlpm.keys,tblDataRaw[survey_date]&\"|\"&tblDataRaw[indicator_id]&\"|\"&tblDataRaw[period_id],_xlpm.k,_xlpm.dt&\"|GDP_REAL|\"&_xlpm.p,_xlpm.hdr,_xlfn.HSTACK(\"Fecha encuesta\",\"PIB real - Media\",\"PIB real - Mediana\",\"PIB real - Q1\",\"PIB real - Q3\",\"PIB real - Mínimo\",\"PIB real - Máximo\"),_xlpm.x,_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[mean],NA()),_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[median],NA()),_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[q1],NA()),_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[q3],NA()),_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[min],NA()),_xlfn.XLOOKUP(_xlpm.k,_xlpm.keys,tblDataRaw[max],NA())),_xlfn.VSTACK(_xlpm.hdr,_xlfn.HSTACK(_xlpm.d,_xlpm.x)))"
+        },
+        {
+          "cell": "P8",
+          "formula": "_xlfn.LET(_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.hdr,_xlfn.DROP(_xlfn.TAKE(_xlpm.raw,1),,1),_xlpm.vals,_xlfn.DROP(_xlpm.raw,1,1),_xlpm.m,--_xlfn.HSTACK(GDP_HISTORY_CHART!$H$4,GDP_HISTORY_CHART!$H$5,GDP_HISTORY_CHART!$J$4,GDP_HISTORY_CHART!$J$5,GDP_HISTORY_CHART!$L$4,GDP_HISTORY_CHART!$L$5),_xlpm.keep,_xlfn.BYROW(_xlpm.vals,_xlfn.LAMBDA(_xlpm.r,SUM(--ISNUMBER(_xlpm.r)*_xlpm.m)>0)),_xlpm.fd,_xlfn._xlws.FILTER(_xlpm.d,_xlpm.keep),_xlpm.fv,_xlfn._xlws.FILTER(_xlpm.vals,_xlpm.keep),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",IF(_xlpm.m,_xlpm.hdr,\"\")),_xlfn.HSTACK(_xlpm.fd,IF(_xlpm.m*ISNUMBER(_xlpm.fv),_xlpm.fv,NA()))))"
+        },
+        {
+          "cell": "AI8",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.ANCHORARRAY($P$8),_xlpm.p,$B$4,_xlpm.a,_xlfn.XLOOKUP(\"GDP_REAL|\"&_xlpm.p,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.m,--_xlfn.HSTACK(GDP_HISTORY_CHART!$H$4,GDP_HISTORY_CHART!$H$5,GDP_HISTORY_CHART!$J$4,GDP_HISTORY_CHART!$J$5,GDP_HISTORY_CHART!$L$4,GDP_HISTORY_CHART!$L$5),_xlpm.actuals,_xlfn.MAKEARRAY(1,6,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlpm.a)),_xlpm.actualRow,_xlfn.HSTACK(\"Realizado\",IF(_xlpm.m*ISNUMBER(_xlpm.actuals),_xlpm.actuals,NA())),IF(ISNUMBER(_xlpm.a),_xlfn.VSTACK(_xlpm.x,_xlpm.actualRow),_xlpm.x))"
+        },
+        {
+          "cell": "AQ8",
+          "formula": "_xlfn.LET(_xlpm.p,$B$4,_xlpm.raw,_xlfn.ANCHORARRAY($A$8),_xlpm.d,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,1),1),_xlpm.med,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlpm.raw,3),1),_xlpm.a,_xlfn.XLOOKUP(\"GDP_REAL|\"&_xlpm.p,ACTUALS_RAW!$E$2:$E$377,ACTUALS_RAW!$G$2:$G$377,\"\"),_xlpm.e,IF(ISNUMBER(_xlpm.med)*ISNUMBER(_xlpm.a),_xlpm.med-_xlpm.a,NA()),_xlfn.VSTACK(_xlfn.HSTACK(\"Fecha encuesta\",\"PIB real - Error\"),_xlfn.HSTACK(_xlpm.d,_xlpm.e)))"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "PIB REAL | Evolución histórica por periodo objetivo"
+        },
+        {
+          "cell": "O1",
+          "value": "Periodos disponibles"
+        },
+        {
+          "cell": "AH1",
+          "value": "Etiquetas de periodo"
+        },
+        {
+          "cell": "A2",
+          "value": "Fuente del visualizador histórico; la selección se controla desde GDP_HISTORY_CHART."
+        },
+        {
+          "cell": "O2",
+          "value": "A_1999"
+        },
+        {
+          "cell": "AH2",
+          "value": "Cierre anual 1999"
+        },
+        {
+          "cell": "O3",
+          "value": "A_2000"
+        },
+        {
+          "cell": "AH3",
+          "value": "Cierre anual 2000"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo seleccionado"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2025"
+        },
+        {
+          "cell": "O4",
+          "value": "A_2001"
+        },
+        {
+          "cell": "AH4",
+          "value": "Cierre anual 2001"
+        },
+        {
+          "cell": "O5",
+          "value": "A_2002"
+        },
+        {
+          "cell": "AH5",
+          "value": "Cierre anual 2002"
+        },
+        {
+          "cell": "A6",
+          "value": "Matriz completa"
+        },
+        {
+          "cell": "O6",
+          "value": "A_2003"
+        },
+        {
+          "cell": "P6",
+          "value": "Matriz activa para gráfica"
+        },
+        {
+          "cell": "AH6",
+          "value": "Cierre anual 2003"
+        },
+        {
+          "cell": "AI6",
+          "value": "Matriz activa con realizado"
+        },
+        {
+          "cell": "AQ6",
+          "value": "Errores de estimación"
+        },
+        {
+          "cell": "O7",
+          "value": "A_2004"
+        },
+        {
+          "cell": "AH7",
+          "value": "Cierre anual 2004"
+        },
+        {
+          "cell": "A8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "B8",
+          "value": "PIB real - Media"
+        },
+        {
+          "cell": "C8",
+          "value": "PIB real - Mediana"
+        },
+        {
+          "cell": "D8",
+          "value": "PIB real - Q1"
+        },
+        {
+          "cell": "E8",
+          "value": "PIB real - Q3"
+        },
+        {
+          "cell": "F8",
+          "value": "PIB real - Mínimo"
+        },
+        {
+          "cell": "G8",
+          "value": "PIB real - Máximo"
+        },
+        {
+          "cell": "O8",
+          "value": "A_2005"
+        },
+        {
+          "cell": "P8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "Q8",
+          "value": null
+        },
+        {
+          "cell": "R8",
+          "value": "PIB real - Mediana"
+        },
+        {
+          "cell": "S8",
+          "value": "PIB real - Q1"
+        },
+        {
+          "cell": "T8",
+          "value": "PIB real - Q3"
+        },
+        {
+          "cell": "U8",
+          "value": null
+        },
+        {
+          "cell": "V8",
+          "value": null
+        },
+        {
+          "cell": "AH8",
+          "value": "Cierre anual 2005"
+        },
+        {
+          "cell": "AI8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "AJ8",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "GDP_HISTORY_CHART",
+      "state": "visible",
+      "range": "A1:AA47",
+      "formulaCount": 12,
+      "formulaSamples": [
+        {
+          "cell": "B5",
+          "formula": "_xlfn.XLOOKUP(B4,_xlfn.ANCHORARRAY(GDP_HISTORY_DATA!$O$2),_xlfn.ANCHORARRAY(GDP_HISTORY_DATA!$AH$2),B4)"
+        },
+        {
+          "cell": "N5",
+          "formula": "\"Evolución del pronóstico de PIB real para \"&LOWER(B5)"
+        },
+        {
+          "cell": "N6",
+          "formula": "_xlfn.LET(_xlpm.x,_xlfn.DROP(_xlfn.CHOOSECOLS(_xlfn.ANCHORARRAY(GDP_HISTORY_DATA!$P$8),1),1),IFERROR(\"Cobertura: \"&TEXT(_xlfn.TAKE(_xlpm.x,1),\"[$-es-MX]mmm yyyy\")&\" – \"&TEXT(_xlfn.TAKE(_xlpm.x,-1),\"[$-es-MX]mmm yyyy\"),\"Cobertura: sin datos\"))"
+        },
+        {
+          "cell": "A7",
+          "formula": "IF($H$4,\"● PIB real - Media\",\"\")"
+        },
+        {
+          "cell": "F7",
+          "formula": "IF($H$5,\"● PIB real - Mediana\",\"\")"
+        },
+        {
+          "cell": "K7",
+          "formula": "IF($J$4,\"● PIB real - Q1\",\"\")"
+        },
+        {
+          "cell": "A8",
+          "formula": "IF($J$5,\"● PIB real - Q3\",\"\")"
+        },
+        {
+          "cell": "F8",
+          "formula": "IF($L$4,\"● PIB real - Mínimo\",\"\")"
+        },
+        {
+          "cell": "K8",
+          "formula": "IF($L$5,\"● PIB real - Máximo\",\"\")"
+        },
+        {
+          "cell": "N8",
+          "formula": "\"Error de estimación del PIB real para \"&LOWER(B5)"
+        },
+        {
+          "cell": "R8",
+          "formula": "_xlfn.ANCHORARRAY(GDP_HISTORY_DATA!AI8)"
+        },
+        {
+          "cell": "Z8",
+          "formula": "_xlfn.ANCHORARRAY(GDP_HISTORY_DATA!AQ8)"
+        }
+      ],
+      "valueSamples": [
+        {
+          "cell": "A1",
+          "value": "PIB REAL | Evolución por periodo objetivo"
+        },
+        {
+          "cell": "A2",
+          "value": "Seleccione un periodo y siga cómo han cambiado los pronósticos entre encuestas."
+        },
+        {
+          "cell": "A3",
+          "value": "Periodo objetivo"
+        },
+        {
+          "cell": "D3",
+          "value": "Variables"
+        },
+        {
+          "cell": "G3",
+          "value": "Estadísticos"
+        },
+        {
+          "cell": "N3",
+          "value": "Nota"
+        },
+        {
+          "cell": "A4",
+          "value": "Periodo"
+        },
+        {
+          "cell": "B4",
+          "value": "A_2025"
+        },
+        {
+          "cell": "D4",
+          "value": "PIB real"
+        },
+        {
+          "cell": "E4",
+          "value": "1"
+        },
+        {
+          "cell": "G4",
+          "value": "Media"
+        },
+        {
+          "cell": "H4",
+          "value": "0"
+        },
+        {
+          "cell": "I4",
+          "value": "Q1"
+        },
+        {
+          "cell": "J4",
+          "value": "1"
+        },
+        {
+          "cell": "K4",
+          "value": "Mínimo"
+        },
+        {
+          "cell": "L4",
+          "value": "0"
+        },
+        {
+          "cell": "N4",
+          "value": "El realizado corresponde exactamente al periodo seleccionado: anual y 4T no son equivalentes."
+        },
+        {
+          "cell": "A5",
+          "value": "Descripción"
+        },
+        {
+          "cell": "B5",
+          "value": "Cierre anual 2025"
+        },
+        {
+          "cell": "G5",
+          "value": "Mediana"
+        },
+        {
+          "cell": "H5",
+          "value": "1"
+        },
+        {
+          "cell": "I5",
+          "value": "Q3"
+        },
+        {
+          "cell": "J5",
+          "value": "1"
+        },
+        {
+          "cell": "K5",
+          "value": "Máximo"
+        },
+        {
+          "cell": "L5",
+          "value": "0"
+        },
+        {
+          "cell": "N5",
+          "value": "Evolución del pronóstico de PIB real para cierre anual 2025"
+        },
+        {
+          "cell": "N6",
+          "value": "Cobertura: dic. 2022 – ene. 2026"
+        },
+        {
+          "cell": "A7",
+          "value": null
+        },
+        {
+          "cell": "F7",
+          "value": "● PIB real - Mediana"
+        },
+        {
+          "cell": "K7",
+          "value": "● PIB real - Q1"
+        },
+        {
+          "cell": "A8",
+          "value": "● PIB real - Q3"
+        },
+        {
+          "cell": "F8",
+          "value": null
+        },
+        {
+          "cell": "K8",
+          "value": null
+        },
+        {
+          "cell": "N8",
+          "value": "Error de estimación del PIB real para cierre anual 2025"
+        },
+        {
+          "cell": "R8",
+          "value": "Fecha encuesta"
+        },
+        {
+          "cell": "S8",
+          "value": null
+        },
+        {
+          "cell": "T8",
+          "value": "PIB real - Mediana"
+        },
+        {
+          "cell": "U8",
+          "value": "PIB real - Q1"
+        },
+        {
+          "cell": "V8",
+          "value": "PIB real - Q3"
+        },
+        {
+          "cell": "W8",
+          "value": null
+        }
+      ]
+    }
+  ],
+  "charts": [
+    "xl/charts/chart6.xml",
+    "xl/charts/chart8.xml",
+    "xl/charts/chart1.xml",
+    "xl/charts/chart3.xml",
+    "xl/charts/chart9.xml",
+    "xl/charts/chart4.xml",
+    "xl/charts/chart7.xml",
+    "xl/charts/chart10.xml",
+    "xl/charts/chart2.xml",
+    "xl/charts/chart5.xml"
+  ],
+  "drawings": [
+    "xl/drawings/drawing3.xml",
+    "xl/drawings/drawing1.xml",
+    "xl/drawings/drawing2.xml",
+    "xl/drawings/drawing6.xml",
+    "xl/drawings/drawing7.xml",
+    "xl/drawings/drawing5.xml",
+    "xl/drawings/drawing4.xml",
+    "xl/drawings/drawing8.xml"
+  ],
+  "tables": [
+    "xl/tables/table1.xml"
+  ],
+  "connections": false,
+  "externalLinks": [],
+  "hasVba": true,
+  "vbaSize": 181760,
+  "definedNames": [
+    {
+      "name": "_xleta.TEXT",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.a",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.active",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.activeHdr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.activeVals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actualDate",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actualGen",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actualRow",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actuals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actualSub",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.actualValue",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ad",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.all",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.allRows",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.amax",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.amin",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ba",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.base",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.be",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bh",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bKey",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.blankRow",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.bv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.c",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ca",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cat",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ce",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cKey",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.cv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.d",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dates",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.datos",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.dt",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.e",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.eff",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.esFecha",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.f",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fa",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fb",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fe",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fechas",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fh",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.field",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fKey",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fmask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fMatch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fp",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fper",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsd0",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fsv0",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ft",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.fv",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.g",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ga",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ge",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.getDates",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.getVals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gOk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.gSel",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.hasActual",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.hdr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.i",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.id",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.ids",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.inc",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.isAnnual",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.k",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.keep",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.keys",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.labels",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.lastForecast",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.m",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mask",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.med",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.mr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.n",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.naCol",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.naForecast",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.newRow",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.oMatch",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.p",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.per",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.periodo",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.periods",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.pk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.prior",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.r",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.raw",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.s",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sa",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sd",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.se",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.seq",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sm",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sOk",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.sSel",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.t",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.td",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.tipo",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.tp",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.valid",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.vals",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.x",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.yr",
+      "ref": "#NAME?"
+    },
+    {
+      "name": "_xlpm.z",
+      "ref": "#NAME?"
+    }
+  ]
+}
