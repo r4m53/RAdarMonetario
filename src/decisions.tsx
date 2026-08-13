@@ -54,7 +54,7 @@ function DecisionsTab({ data }: { data: DecisionsData }) {
   const decisions = data.decisions;
   const [params] = useSearchParams();
   const linkedIndex = decisions.findIndex(item=>item.Decision_ID===params.get("decision"));
-  const [index, setIndex] = useState(linkedIndex>=0?linkedIndex:decisions.length - 2);
+  const [index, setIndex] = useState(linkedIndex>=0?linkedIndex:decisions.length - 1);
   const decision = decisions[index];
   const selectId = (id: string) => { const next=decisions.findIndex(item=>item.Decision_ID===id); if(next>=0)setIndex(next); };
   const windowStart = Math.max(0, Math.min(index - 5, decisions.length - 11));
