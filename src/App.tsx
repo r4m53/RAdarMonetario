@@ -15,6 +15,7 @@ import { exportPdf } from "./pdf";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import DecisionsRadar from "./decisions";
 import ForecastsRadar from "./forecasts";
+import { ShareButton } from "./share-button";
 
 const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 
@@ -58,6 +59,7 @@ export default function App() {
       <Route path="/pronosticos" element={<ForecastsRadar />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    <ShareButton />
     <PlatformFooter />
   </>;
 }
