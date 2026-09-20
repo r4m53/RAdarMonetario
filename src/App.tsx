@@ -9,7 +9,7 @@ import { Line, LineChart, CartesianGrid, ResponsiveContainer, Tooltip as ChartTo
 import { motion } from "framer-motion";
 import { average, effectiveScore, evaluationFor, evaluationTotal, loadData, nearestBoard, scoreEditKey } from "./data";
 import { useRadarStore } from "./store";
-import { orange } from "./theme";
+import { colors, orange } from "./theme";
 import type { Evaluation, EvaluationMode, EvaluationSourceMode, Person } from "./types";
 import { exportPdf } from "./pdf";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
@@ -21,8 +21,8 @@ import ExpectationsRadar from "./expectations";
 const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 
 const modeMeta = {
-  official: { color: "#33c37d", title: "🟢 Oficial", text: "Visualizando la evaluación oficial del RAdarMonetario." },
-  heath: { color: "#4da3ff", title: "🔵 Reconstrucción Heath", text: "Visualizando la reconstrucción de las calificaciones publicadas por Jonathan Heath." },
+  official: { color: colors.sage, title: "🟢 Oficial", text: "Visualizando la evaluación oficial del RAdarMonetario." },
+  heath: { color: colors.steel, title: "🔵 Reconstrucción Heath", text: "Visualizando la reconstrucción de las calificaciones publicadas por Jonathan Heath." },
   custom: { color: orange, title: "🟠 Mi evaluación", text: "Está visualizando una evaluación personalizada." },
 } as const;
 
@@ -95,7 +95,7 @@ function Home() {
     <Box className="module-grid">{modules.map(module => <Paper className="module-card" key={module.title}>
       <Stack direction="row" justifyContent="space-between" gap={2} alignItems="flex-start"><Typography variant="h5">{module.title}</Typography><Chip size="small" color={module.available ? "success" : "default"} label={module.status} /></Stack>
       <Typography color="text.secondary">{module.description}</Typography>
-      <Button variant={module.available ? "contained" : "outlined"} disabled={!module.available} onClick={() => module.path && navigate(module.path)} sx={{ alignSelf: "flex-start", color: module.available ? "#111" : undefined }}>{module.available ? "Abrir análisis" : "Próximamente"}</Button>
+      <Button variant={module.available ? "contained" : "outlined"} disabled={!module.available} onClick={() => module.path && navigate(module.path)} sx={{ alignSelf: "flex-start", color: module.available ? colors.canvas : undefined }}>{module.available ? "Abrir análisis" : "Próximamente"}</Button>
     </Paper>)}</Box>
     <Typography variant="overline" color="primary" sx={{ display: "block", mt: 6 }}>PRÓXIMAMENTE</Typography>
     <Box className="upcoming-grid">{["Inflación", "Consenso de analistas", "Calendario Banxico"].map(title => <Paper className="upcoming-card" key={title}><Typography variant="h6">{title}</Typography><Chip size="small" label="Próximamente" /></Paper>)}</Box>
@@ -218,7 +218,7 @@ function HistoricalChart({embedded=false}:{embedded?:boolean}) {
   const series=useMemo(()=>data ? data.timeline.map(date=>{const board=nearestBoard(data,date);const evals=board?.members.map(n=>evaluationFor(data,date,n,sourceMode)).filter(Boolean) as Evaluation[]|undefined;const score=average(evals?.map(e=>evaluationTotal(data,date,e,edits))??[]);return {date,label:formatDate(date),score}}) : [],[data,sourceMode,edits]);
   if(!data)return null;
   const color=modeMeta[mode].color;
-  return <ChartPanel eyebrow="SERIE HISTÓRICA" title="Evolución de Radar de experiencia" subtitle="Haz clic en cualquier punto para seleccionar y resaltar esa Junta."><ResponsiveContainer width="100%" height={embedded?330:470}><LineChart data={series}><CartesianGrid stroke="#262626"/><XAxis dataKey="label" minTickGap={40}/><YAxis domain={[5,10]} tickFormatter={(v:number)=>v.toFixed(1)}/><ChartTooltip formatter={tooltipFormatter} contentStyle={{background:"#171717",border:`1px solid ${color}`}}/><Line type="monotone" dataKey="score" name="Radar de experiencia" stroke={color} strokeWidth={2.5} dot={({cx,cy,payload})=><g onPointerDown={()=>selectBoard(payload.date)} onClick={()=>selectBoard(payload.date)} style={{cursor:"pointer",pointerEvents:"all"}}><circle cx={cx} cy={cy} r={payload.date===activeBoard?7:2.5} fill={payload.date===activeBoard?"#fff":color} stroke={color} strokeWidth={payload.date===activeBoard?3:0}/><circle cx={cx} cy={cy} r={10} fill="transparent"/></g>} activeDot={{r:7}}/></LineChart></ResponsiveContainer></ChartPanel>;
+  return <ChartPanel eyebrow="SERIE HISTÓRICA" title="Evolución de Radar de experiencia" subtitle="Haz clic en cualquier punto para seleccionar y resaltar esa Junta."><ResponsiveContainer width="100%" height={embedded?330:470}><LineChart data={series}><CartesianGrid stroke={colors.border}/><XAxis dataKey="label" minTickGap={40}/><YAxis domain={[5,10]} tickFormatter={(v:number)=>v.toFixed(1)}/><ChartTooltip formatter={tooltipFormatter} contentStyle={{background:colors.surfaceRaised,border:`1px solid ${color}`}}/><Line type="monotone" dataKey="score" name="Radar de experiencia" stroke={color} strokeWidth={2.5} dot={({cx,cy,payload})=><g onPointerDown={()=>selectBoard(payload.date)} onClick={()=>selectBoard(payload.date)} style={{cursor:"pointer",pointerEvents:"all"}}><circle cx={cx} cy={cy} r={payload.date===activeBoard?7:2.5} fill={payload.date===activeBoard?colors.text:color} stroke={color} strokeWidth={payload.date===activeBoard?3:0}/><circle cx={cx} cy={cy} r={10} fill="transparent"/></g>} activeDot={{r:7}}/></LineChart></ResponsiveContainer></ChartPanel>;
 }
 
 function ExperienceChart() {
@@ -228,7 +228,7 @@ function ExperienceChart() {
     if (payload?.date && nearestBoard(data, payload.date)) selectBoard(payload.date);
   };
   const color=modeMeta[mode].color;
-  return <ChartPanel eyebrow="CAPITAL PROFESIONAL" title="Experiencia acumulada de la Junta" subtitle="Promedios mensuales de experiencia total, monetaria y fiscal."><ResponsiveContainer width="100%" height={470}><LineChart data={data.experience} onClick={handleClick}><CartesianGrid stroke="#262626"/><XAxis dataKey="date" tickFormatter={formatDate} minTickGap={50}/><YAxis tickFormatter={(v:number)=>v.toFixed(1)}/><Legend/><ChartTooltip formatter={tooltipFormatter} labelFormatter={(label)=>typeof label==="string"?formatDate(label):String(label??"")} contentStyle={{background:"#171717",border:`1px solid ${color}`}}/><Line dot={false} dataKey="total" name="Total" stroke={color} strokeWidth={2.3}/><Line dot={false} dataKey="monetary" name="Monetaria" stroke="#4da3ff" strokeWidth={1.8}/><Line dot={false} dataKey="fiscal" name="Fiscal" stroke="#33c37d" strokeWidth={1.8}/></LineChart></ResponsiveContainer></ChartPanel>;
+  return <ChartPanel eyebrow="CAPITAL PROFESIONAL" title="Experiencia acumulada de la Junta" subtitle="Promedios mensuales de experiencia total, monetaria y fiscal."><ResponsiveContainer width="100%" height={470}><LineChart data={data.experience} onClick={handleClick}><CartesianGrid stroke={colors.border}/><XAxis dataKey="date" tickFormatter={formatDate} minTickGap={50}/><YAxis tickFormatter={(v:number)=>v.toFixed(1)}/><Legend/><ChartTooltip formatter={tooltipFormatter} labelFormatter={(label)=>typeof label==="string"?formatDate(label):String(label??"")} contentStyle={{background:colors.surfaceRaised,border:`1px solid ${color}`}}/><Line dot={false} dataKey="total" name="Total" stroke={color} strokeWidth={2.3}/><Line dot={false} dataKey="monetary" name="Monetaria" stroke={colors.steel} strokeWidth={1.8}/><Line dot={false} dataKey="fiscal" name="Fiscal" stroke={colors.sage} strokeWidth={1.8}/></LineChart></ResponsiveContainer></ChartPanel>;
 }
 
 function ChartPanel({eyebrow,title,subtitle,children}:{eyebrow:string;title:string;subtitle:string;children:React.ReactNode}) {return <Paper sx={{p:{xs:2,md:4}}}><Typography variant="overline" color="primary">{eyebrow}</Typography><Typography variant="h3">{title}</Typography><Typography color="text.secondary" sx={{mb:4}}>{subtitle}</Typography>{children}</Paper>}
