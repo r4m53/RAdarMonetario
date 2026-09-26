@@ -1,9 +1,9 @@
 {
   "source": "C:\\Users\\ram5e\\PycharmProjects\\RAdarMonetario\\data\\master\\pronosticos_banxico_historico.xlsm",
   "decisions": 57,
-  "effectiveDecisions": 42,
-  "forecasts": 1940,
-  "periods": 30,
+  "effectiveDecisions": 43,
+  "forecasts": 1988,
+  "periods": 31,
   "categories": [
     "INPC",
     "INPC_DES",
@@ -13,8 +13,6 @@
   "nullForecastValues": 0,
   "duplicateForecastKeys": [],
   "ambiguousDecisionDates": [],
-  "crosswalkMatches": 41,
-  "crosswalkUnmatchedEffective": [
-    "DPM-2026-08-06"
-  ]
+  "crosswalkMatches": 43,
+  "crosswalkUnmatchedEffective": []
 }
