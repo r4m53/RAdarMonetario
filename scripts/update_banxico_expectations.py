@@ -28,12 +28,14 @@ ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "data" / "master"
 FORECAST_BOOK = MASTER / "banxico_expectativas_pronosticos.xlsm"
 OPINION_BOOK = MASTER / "banxico_expectativas_monitor_opiniones.xlsm"
-SURVEY_DATE = date(2026, 8, 31)
-PUBLICATION_DATE = date(2026, 9, 1)
-SIE_MONTH = "Ago 2026"
+SURVEY_DATE = date(2026, 9, 30)
+PUBLICATION_DATE = date(2026, 10, 1)
+SIE_MONTH = "Sep 2026"
+SURVEY_ID = f"SURV_{SURVEY_DATE:%Y%m}"
+SURVEY_MONTH_LABEL = "septiembre de 2026"
 FORECAST_TABLES = ("CR154", "CR156", "CR163", "CR164", "CR165", "CR168", "CR170", "CR189")
 OPINION_TABLES = ("CR180", "CR182", "CR357")
-CACHE_DIR = ROOT / "work" / "sie-expectations-cache-202608"
+CACHE_DIR = ROOT / f"work/sie-expectations-cache-{SURVEY_DATE:%Y%m}"
 
 NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -241,9 +243,10 @@ def month_gap(start: date, end: date | None) -> int | None:
 def build_forecasts(scraped: dict[str, list[dict[str, object]]], current: list[dict[str, object]]) -> list[dict[str, object]]:
     templates: dict[tuple[str, str], dict[str, object]] = {}
     previous: dict[tuple[str, str], dict[str, object]] = {}
+    previous_survey_date = max(str(row.get("survey_date"))[:10] for row in current if str(row.get("survey_date"))[:10] < SURVEY_DATE.isoformat())
     for row in current:
         templates.setdefault((row["source_table_id"], row["indicator_id"]), row)
-        if str(row.get("survey_date"))[:10] == "2026-07-31":
+        if str(row.get("survey_date"))[:10] == previous_survey_date:
             previous[(row["indicator_id"], row["period_id"])] = row
 
     rows = []
@@ -274,8 +277,8 @@ def build_forecasts(scraped: dict[str, list[dict[str, object]]], current: list[d
                 "source_series_id": f"SIE-{table_id}-{identity['target_period']}",
                 "notes": group["path"][-1],
                 "chart_date": target_date,
-                "survey_id": "SURV_202608",
-                "forecast_id": f"SURV_202608|{identity['indicator_id']}|{identity['period_id']}",
+                "survey_id": SURVEY_ID,
+                "forecast_id": f"{SURVEY_ID}|{identity['indicator_id']}|{identity['period_id']}",
                 "Column1": SURVEY_DATE.isoformat(),
             })
             prior = previous.get((identity["indicator_id"], identity["period_id"]))
@@ -305,7 +308,8 @@ def opinion_group(table_id: str, path: tuple[str, ...]) -> str:
 
 
 def build_opinions(scraped: dict[str, list[dict[str, object]]], current: list[dict[str, object]]) -> list[dict[str, object]]:
-    latest = [row for row in current if str(row.get("survey_date"))[:10] == "2026-07-31"]
+    previous_survey_date = max(str(row.get("survey_date"))[:10] for row in current if str(row.get("survey_date"))[:10] < SURVEY_DATE.isoformat())
+    latest = [row for row in current if str(row.get("survey_date"))[:10] == previous_survey_date]
     templates = {(row["source_table_id"], row["forecast_type"], row["target_period"]): row for row in latest}
     rows = []
     for table_id in OPINION_TABLES:
@@ -325,8 +329,8 @@ def build_opinions(scraped: dict[str, list[dict[str, object]]], current: list[di
                 "mean": None if is_count else value,
                 "n_responses": value if is_count else None,
                 "source_series_id": f"SIE-{table_id}-{item['label']}",
-                "survey_id": "SURV_202608",
-                "forecast_id": f"SURV_202608|{row['indicator_id']}|{row['period_id']}",
+                "survey_id": SURVEY_ID,
+                "forecast_id": f"{SURVEY_ID}|{row['indicator_id']}|{row['period_id']}",
             })
             rows.append(row)
     return rows
@@ -443,20 +447,20 @@ def update_book(book: Path, headers: list[str], rows: list[dict[str, object]], o
 
     survey_headers = ["survey_id", "survey_date", "survey_year", "survey_month", "notes"]
     append_rows(parts, "SURVEY_MAP", survey_headers, [{
-        "survey_id": "SURV_202608",
+        "survey_id": SURVEY_ID,
         "survey_date": SURVEY_DATE.isoformat(),
-        "survey_year": 2026,
-        "survey_month": 8,
+        "survey_year": SURVEY_DATE.year,
+        "survey_month": SURVEY_DATE.month,
         "notes": "Último día del mes de referencia",
     }])
     if opinion:
-        update_cell(parts, "README", "B5", "Información histórica disponible hasta agosto de 2026.")
+        update_cell(parts, "README", "B5", f"Información histórica disponible hasta {SURVEY_MONTH_LABEL}.")
         for row in range(3, 6):
-            update_cell(parts, "SERIES_MAP", f"H{row}", "2026-08")
+            update_cell(parts, "SERIES_MAP", f"H{row}", f"{SURVEY_DATE:%Y-%m}")
     else:
-        update_cell(parts, "README", "B5", "2026-09-04 (actualizado con la encuesta de agosto de 2026, publicada el 2026-09-01).")
+        update_cell(parts, "README", "B5", f"{date.today().isoformat()} (actualizado con la encuesta de {SURVEY_MONTH_LABEL}, publicada el {PUBLICATION_DATE.isoformat()}).")
         for row in range(3, 16):
-            update_cell(parts, "SERIES_MAP", f"H{row}", "2026-08")
+            update_cell(parts, "SERIES_MAP", f"H{row}", f"{SURVEY_DATE:%Y-%m}")
 
     with tempfile.NamedTemporaryFile(dir=book.parent, suffix=".xlsm", delete=False) as temporary:
         temporary_path = Path(temporary.name)
@@ -478,9 +482,9 @@ def validate_rows(forecasts: list[dict[str, object]], opinions: list[dict[str, o
     if len(opinion_keys) != len(set(opinion_keys)):
         raise RuntimeError("Opiniones duplicadas en el nuevo corte")
     if len(forecasts) != 35:
-        raise RuntimeError(f"Se esperaban 35 pronósticos de agosto y se obtuvieron {len(forecasts)}")
+        raise RuntimeError(f"Se esperaban 35 pronósticos de {SURVEY_MONTH_LABEL} y se obtuvieron {len(forecasts)}")
     if len(opinions) != 116:
-        raise RuntimeError(f"Se esperaban 116 opiniones de agosto y se obtuvieron {len(opinions)}")
+        raise RuntimeError(f"Se esperaban 116 opiniones de {SURVEY_MONTH_LABEL} y se obtuvieron {len(opinions)}")
 
 
 def main() -> None:
